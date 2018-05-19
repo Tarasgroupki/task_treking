@@ -1,0 +1,53 @@
+.container{
+    width:100%;
+    padding:0px;
+    margin:0px;
+}
+li {
+    list-style-type: none;
+}
+nav {
+    background-color:#ADFF2F;
+    width:300px;
+    height:100%;
+    position:fixed;
+    bottom:0px;
+    left:0px;
+}
+.menu-sidebar {
+    position: relative;
+    top:0%;
+}
+.menu-sidebar-second {
+    display:none;
+}
+.links {
+    color: #000;
+    font-size: 13px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+.main {
+    position: relative;
+    top:100px;
+    left:300px;
+    width:1000px;
+}
+mat-expansion-panel{
+    background-color:#ADFF2F;
+}
+h1 {
+    position: relative;
+    top:100px;
+    left:500px;
+    width:400px;
+}
+.top-menu {
+    background-color:#9ACD32;
+    height: 50px;
+    width:100%;
+    position: absolute;
+    right:0px;
+    left:0px;
+    top:0px;
+}

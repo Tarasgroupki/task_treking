@@ -1,0 +1,14 @@
+<p>
+  client view!
+</p>
+<ul>
+<li>{{client['id']}}</li>
+<li>{{client['name']}}</li>
+<li>{{client['email']}}</li>
+<li>{{client['primary_number']}}</li>
+<li>{{client['secondary_number']}}</li>
+<li>{{client['address']}}</li>
+<li>{{client['city']}}</li>
+</ul>
+<a routerLink="/clients/add/{{ client['id'] }}" routerLinkActive="active"><button mat-button class="edit">{{ 'Редагувати' }}</button></a>
+<a routerLink="/clients/delete/{{ client['id'] }}" routerLinkActive="active"><button mat-button class="delete">{{ 'Видалити' }}</button></a>
