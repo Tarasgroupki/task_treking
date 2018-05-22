@@ -11,7 +11,8 @@ import { Client } from './clients.model';
 })
 export class ClientsCreateComponent implements OnInit{
    // log(x) { console.log(x); }
-    client: Client = new Client('', '', '', '', '', '', '', '', '', '', '', 1, 1);
+    ///client: any = 1;
+    client: any = new Client('', '', '', '', '', '', '', '', '', '', '', 1, 1);
     clients: Client[] = [];
     users = [
         {value: 0, viewValue: ''}

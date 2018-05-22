@@ -13,9 +13,9 @@ export class ClientsUpdateComponent implements OnInit {
     client: Client = new Client('Taras', 'taras2andry@mail.ru', '0507212852', '0507212852', 'Kalush', '77300', 'Kalush', 'IFNTUOG', '321', 'IT', 'University', 1, 1);
     clients: Client[] = [];
     users = [
-        {value: 0, viewValue: ''}
+        {value: 0, viewValue: 'Taras'}
     ];
-    selected: number;
+    selectedValue: number;
 
     constructor(public _client_obj: ClientsService,private route: ActivatedRoute) {
 
@@ -29,9 +29,11 @@ export class ClientsUpdateComponent implements OnInit {
              this.users[i]['value'] = res['data'][i].id;
              this.users[i]['viewValue'] = res['data'][i].name;
          }
+         console.log(res);
+         this.selectedValue = this.users[0].value;
      });
-     this.selected = res['data']['user_id'];
-   //  console.log(this.users);
+     //this.selectedValue = this.users[0].value.toString();
+     console.log(this.users[0].value);
 }));
 }
 

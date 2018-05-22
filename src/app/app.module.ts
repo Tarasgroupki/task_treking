@@ -16,6 +16,24 @@ import {ClientsViewComponent} from './clients/clients-view.component';
 import {ClientsCreateComponent} from './clients/clients-create.component';
 import {ClientsUpdateComponent} from './clients/clients-update.component';
 import {ClientsDeleteComponent} from './clients/clients-delete.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { TasksService } from './tasks/tasks.service';
+import {TasksViewComponent} from './tasks/tasks-view.component';
+import { TasksCreateComponent } from './tasks/tasks-create.component';
+import { TasksUpdateComponent } from './tasks/tasks-update.component';
+import { TasksDeleteComponent } from './tasks/tasks-delete.component';
+import { LeadsComponent } from './leads/leads.component';
+import { LeadsService } from './leads/leads.service';
+import {LeadsViewComponent} from './leads/leads-view.component';
+import { LeadsCreateComponent } from './leads/leads-create.component';
+import { LeadsUpdateComponent } from './leads/leads-update.component';
+import { LeadsDeleteComponent } from './leads/leads-delete.component';
+import { UsersService } from './users/users.service';
+import { UsersComponent } from './users/users.component';
+import {UsersViewComponent} from './users/users-view.component';
+import { UsersCreateComponent } from './users/users-create.component';
+import { UsersUpdateComponent } from './users/users-update.component';
+import { UsersDeleteComponent } from './users/users-delete.component';
 
 
 @NgModule({
@@ -25,8 +43,23 @@ import {ClientsDeleteComponent} from './clients/clients-delete.component';
     ClientsViewComponent,
     ClientsCreateComponent,
     ClientsUpdateComponent,
-    ClientsDeleteComponent
-  ],
+    ClientsDeleteComponent,
+    TasksComponent,
+    TasksViewComponent,
+    TasksCreateComponent,
+    TasksUpdateComponent,
+    TasksDeleteComponent,
+    LeadsComponent,
+    LeadsViewComponent,
+    LeadsCreateComponent,
+    LeadsUpdateComponent,
+    LeadsDeleteComponent,
+    UsersComponent,
+    UsersViewComponent,
+    UsersCreateComponent,
+    UsersUpdateComponent,
+    UsersDeleteComponent
+      ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -51,6 +84,67 @@ import {ClientsDeleteComponent} from './clients/clients-delete.component';
             path: 'clients/delete/:id',
             component: ClientsDeleteComponent
         },
+        {
+            path: 'tasks',
+            component: TasksComponent
+        },
+        {
+            path: 'tasks/:id',
+            component: TasksViewComponent
+        },
+        {
+            path: 'task/create',
+            component: TasksCreateComponent
+        },
+
+        {
+            path: 'tasks/add/:id',
+            component: TasksUpdateComponent
+        },
+        {
+            path: 'tasks/delete/:id',
+            component: TasksDeleteComponent
+        },
+        {
+            path: 'leads',
+            component: LeadsComponent
+        },
+        {
+            path: 'leads/:id',
+            component: LeadsViewComponent
+        },
+        {
+            path: 'lead/create',
+            component: LeadsCreateComponent
+        },
+        {
+            path: 'leads/add/:id',
+            component: LeadsUpdateComponent
+        },
+        {
+            path: 'leads/delete/:id',
+            component: LeadsDeleteComponent
+        },
+        {
+            path: 'users',
+            component: UsersComponent
+        },
+        {
+            path: 'users/:id',
+            component: UsersViewComponent
+        },
+        {
+            path: 'user/create',
+            component: UsersCreateComponent
+        },
+        {
+            path: 'users/add/:id',
+            component: UsersUpdateComponent
+        },
+        {
+            path: 'users/delete/:id',
+            component: UsersDeleteComponent
+        },
     ]),
     FormsModule,
     ReactiveFormsModule,
@@ -58,7 +152,7 @@ import {ClientsDeleteComponent} from './clients/clients-delete.component';
     MaterialModule
   //  AppRoutingModule
   ],
-  providers: [ApiService, ClientsService],
+  providers: [ApiService, ClientsService, TasksService, LeadsService, UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

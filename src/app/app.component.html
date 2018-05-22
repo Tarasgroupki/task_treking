@@ -2,9 +2,6 @@
 <div class="top-menu">
 
 </div>
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
 <div class="container">
   <nav>
     <img style="" width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
@@ -28,9 +25,9 @@
             <h3>Завдання</h3>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <a class="links" routerLink="clients/create" routerLinkActive="active">Добавити нове завдання</a>
+        <a class="links" routerLink="task/create" routerLinkActive="active">Добавити нове завдання</a>
         <br />
-        <a class="links" routerLink="clients" routerLinkActive="active">Список завдань</a>
+        <a class="links" routerLink="tasks" routerLinkActive="active">Список завдань</a>
       </mat-expansion-panel>
       <mat-expansion-panel (opened)="panelOpenState = true"
                            (closed)="panelOpenState = false">
@@ -39,9 +36,9 @@
             <h3>Користувачі</h3>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <a class="links" routerLink="clients/create" routerLinkActive="active">Добавити нового користувача</a>
+        <a class="links" routerLink="user/create" routerLinkActive="active">Добавити нового користувача</a>
         <br />
-        <a class="links" routerLink="clients" routerLinkActive="active">Список користувачів</a>
+        <a class="links" routerLink="users" routerLinkActive="active">Список користувачів</a>
       </mat-expansion-panel>
       <mat-expansion-panel (opened)="panelOpenState = true"
                            (closed)="panelOpenState = false">
@@ -50,9 +47,9 @@
             <h3>Терміни</h3>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <a class="links" routerLink="clients/create" routerLinkActive="active">Добавити новий термін</a>
+        <a class="links" routerLink="lead/create" routerLinkActive="active">Добавити новий термін</a>
         <br />
-        <a class="links" routerLink="clients" routerLinkActive="active">Список термінів</a>
+        <a class="links" routerLink="leads" routerLinkActive="active">Список термінів</a>
       </mat-expansion-panel>
     </mat-accordion>
   </nav>

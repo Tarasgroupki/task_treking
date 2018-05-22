@@ -9,7 +9,7 @@ import { ClientsService } from './clients.service';
 export class ClientsComponent implements OnInit {
     title = 'app';
     clients: object;
-    displayedColumns = ['id', 'name', 'email', 'primary_number', 'secondary_number', 'address', 'zipcode', 'city', 'company_name', 'vat'];
+    displayedColumns = ['id', 'name', 'email', 'primary_number', 'secondary_number', 'address', 'zipcode', 'city', 'company_name', 'industry'];
 
     constructor(private _clients: ClientsService) {}
 
