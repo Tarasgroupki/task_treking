@@ -34,6 +34,23 @@ import {UsersViewComponent} from './users/users-view.component';
 import { UsersCreateComponent } from './users/users-create.component';
 import { UsersUpdateComponent } from './users/users-update.component';
 import { UsersDeleteComponent } from './users/users-delete.component';
+import { SprintsComponent } from './sprints/sprints.component';
+import {SprintsViewComponent} from './sprints/sprints-view.component';
+import { SprintsCreateComponent } from './sprints/sprints-create.component';
+import { SprintsUpdateComponent } from './sprints/sprints-update.component';
+import { SprintsDeleteComponent } from './sprints/sprints-delete.component';
+import { AuthService } from './auth/auth.service';
+import { AuthComponent } from './auth/auth.component';
+import { SettingsService } from './settings/settings.service';
+import { SettingsComponent } from './settings/settings.component';
+import { SettingsCreateComponent } from './settings/settings-create.component';
+import { UsersRolesComponent } from './users/users_roles.component';
+import { SettingsUpdateComponent } from './settings/settings-update.component';
+import { AuthLogoutsComponent } from './auth/auth-logout.component';
+import { UsersProfileComponent } from './users/users-profile.component';
+import {GraphComponent} from './graph/graph.component';
+import {GraphService} from './graph/graph.service';
+import {SprintsService} from './sprints/sprints.service';
 
 
 @NgModule({
@@ -58,7 +75,21 @@ import { UsersDeleteComponent } from './users/users-delete.component';
     UsersViewComponent,
     UsersCreateComponent,
     UsersUpdateComponent,
-    UsersDeleteComponent
+    UsersDeleteComponent,
+    UsersRolesComponent,
+    SprintsComponent,
+    SprintsViewComponent,
+    SprintsCreateComponent,
+    SprintsUpdateComponent,
+    SprintsDeleteComponent,
+    UsersRolesComponent,
+    AuthComponent,
+    SettingsComponent,
+    SettingsCreateComponent,
+    SettingsUpdateComponent,
+    AuthLogoutsComponent,
+    UsersProfileComponent,
+    GraphComponent
       ],
   imports: [
     BrowserModule,
@@ -145,6 +176,59 @@ import { UsersDeleteComponent } from './users/users-delete.component';
             path: 'users/delete/:id',
             component: UsersDeleteComponent
         },
+
+        {
+            path: 'users/add_role/:id',
+            component: UsersRolesComponent
+        },
+        {
+            path: 'login',
+            component: AuthComponent
+        },
+        {
+            path: 'roles',
+            component: SettingsComponent
+        },
+        {
+            path: 'role/create',
+            component: SettingsCreateComponent
+        },
+        {
+            path: 'roles/add/:id',
+            component: SettingsUpdateComponent
+        },
+        {
+            path: 'logout/:id',
+            component: AuthLogoutsComponent
+        },
+        {
+            path: 'profile',
+            component: UsersProfileComponent
+        },
+        {
+            path: 'graph',
+            component: GraphComponent
+        },
+        {
+            path: 'sprints',
+            component: SprintsComponent
+        },
+        {
+            path: 'sprints/:id',
+            component: SprintsViewComponent
+        },
+        {
+            path: 'sprint/create',
+            component: SprintsCreateComponent
+        },
+        {
+            path: 'sprints/add/:id',
+            component: SprintsUpdateComponent
+        },
+        {
+            path: 'sprints/delete/:id',
+            component: SprintsDeleteComponent
+        },
     ]),
     FormsModule,
     ReactiveFormsModule,
@@ -152,7 +236,7 @@ import { UsersDeleteComponent } from './users/users-delete.component';
     MaterialModule
   //  AppRoutingModule
   ],
-  providers: [ApiService, ClientsService, TasksService, LeadsService, UsersService],
+  providers: [ApiService, ClientsService, TasksService, LeadsService, UsersService, AuthService, SettingsService, GraphService, SprintsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

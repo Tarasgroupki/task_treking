@@ -9,6 +9,7 @@ import { ClientsService } from './clients.service';
 export class ClientsComponent implements OnInit {
     title = 'app';
     clients: object;
+    public LogginningData = JSON.parse(localStorage.getItem('LoggedIn'));
     displayedColumns = ['id', 'name', 'email', 'primary_number', 'secondary_number', 'address', 'zipcode', 'city', 'company_name', 'industry'];
 
     constructor(private _clients: ClientsService) {}

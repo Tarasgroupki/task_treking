@@ -12,7 +12,8 @@ export class UsersUpdateComponent implements OnInit {
     id: number;
     user: any = new User('', '', '', '', '', '', '');
     users: User[] = [];
-  //  selectedValue: number;
+    selectedFile = null;
+    filename = null;
 
     constructor(public _user_obj: UsersService,private route: ActivatedRoute) {
 
@@ -32,13 +33,25 @@ export class UsersUpdateComponent implements OnInit {
      //this.selectedValue = this.users[0].value.toString();
   //   console.log(this.users[0].value);
 }
-
+    onFileSelected(event) {
+        this.selectedFile = <File>event.target.files[0];
+        console.log(this.selectedFile);
+    }
 
    updateUser() {
-        this.users.push(new User(this.user.name, this.user.email, this.user.password, this.user.address, this.user.work_number, this.user.personal_number, this.user.image_path));
+       if (this.selectedFile != null) {
+       const fd = new FormData();
+       fd.append('image_path', this.selectedFile, this.selectedFile.name);
+       this._user_obj.fileUpload(fd).subscribe(res => {
+           console.log(res);
+       });
+       this.filename = this.selectedFile.name;
+       }
+        this.users.push(new User(this.user.name, this.user.email, this.user.password, this.user.address, this.user.work_number, this.user.personal_number, this.filename));
        // console.log(this.clients[0]['name']);
        // this.selected = this.client.user_id;
         this._user_obj.updateUser(this.id, this.users).subscribe(res => {
+            this.users.length = 0;
         console.log(res);
     });
 

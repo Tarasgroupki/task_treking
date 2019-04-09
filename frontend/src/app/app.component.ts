@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from './api.service';
+//import { ApiService } from './api.service';
 import {ClientsInterface} from './clients-interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,25 +9,30 @@ import {ClientsInterface} from './clients-interface';
   styleUrls: ['./app.component.css'],
  // providers: [ApiService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app';
- // _clientsArray: ClientsInterface[];
- /* clients: object;
-  constructor(private _clients: ApiService) {}
-
-  ngOnInit() {
-    this._clients.getClients().subscribe(res => {
-      this.clients = res;
-    });
-  }*/
- /* getClients(): void {
-    this.apiService.getClients().subscribe(
-        resultArray => this._clientsArray = resultArray,
-        error => console.log('Error ::' + error)
-    )
+  public LogginningData = JSON.parse(localStorage.getItem('LoggedIn'));
+  route: string;
+  constructor(private _router: Router) {
+      console.log(this.LogginningData);
+       _router.events.subscribe((url: any) => {
+         this.route = url['url'];
+       //  console.log(this.route);
+       });
+       //console.log(this._router.url);
   }
 
-  ngOnInit(): void {
-    this.getClients();
-  }*/
+  ngOnInit() {
+      //localStorage.removeItem('token');
+      //localStorage.removeItem('LoggedIn');
+      if(!localStorage.getItem('LoggedIn')){
+          this._router.navigate(['login']);
+      }
+
+    }
+    removeAuth() {
+       // console.log(JSON.parse(localStorage.getItem('LoggedIn')));
+        localStorage.removeItem('token');
+        localStorage.removeItem('LoggedIn');
+    }
 }

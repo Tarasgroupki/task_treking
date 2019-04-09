@@ -50,11 +50,24 @@
   </div>
 </div>
 <div class="form-group">
+  <mat-form-field>
+    <mat-select [(ngModel)]="task.sprint_assigned_id" placeholder="Check User" #sprint_assigned_id="ngModel">
+      <mat-option *ngFor="let sprint of sprints" [value]="sprint.value" >
+        {{ sprint.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="form-control-feedback"
+       *ngIf="sprint_assigned_id.errors && (sprint_assigned_id.dirty || sprint_assigned_id.touched)">
+    <p *ngIf="sprint_assigned_id.errors.required">Sprint assigned required</p>
+  </div>
+</div>
+<div class="form-group">
   <input type="hidden" class="form-control" name="user_created_id" [(ngModel)]="task.user_created_id" #user_created_id="ngModel"/>
 </div>
 <div class="form-group">
   <mat-form-field>
-    <mat-select [(ngModel)]="selected" placeholder="Check Client" #client_id="ngModel">
+    <mat-select [(ngModel)]="task.user_created_id" placeholder="Check Client" #client_id="ngModel">
       <mat-option *ngFor="let user of users" [value]="user.value">
         {{ user.viewValue }}
       </mat-option>
@@ -63,19 +76,6 @@
   <div class="form-control-feedback"
        *ngIf="client_id.errors && (client_id.dirty || client_id.touched)">
     <p *ngIf="client_id.errors.required">Client required</p>
-  </div>
-</div>
-<div class="form-group">
-  <mat-form-field>
-    <mat-select [(ngModel)]="task.invoice_id" placeholder="Check Client" #invoice_id="ngModel">
-      <mat-option *ngFor="let invoice of invoices" [value]="invoice.value">
-        {{ invoice.viewValue }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <div class="form-control-feedback"
-       *ngIf="invoice_id.errors && (invoice_id.dirty || invoice_id.touched)">
-    <p *ngIf="invoice_id.errors.required">Invoice id is required</p>
   </div>
 </div>
 <div class="form-group">

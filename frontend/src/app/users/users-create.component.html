@@ -43,7 +43,7 @@
         <p *ngIf="password.value !== reset_password.value">Reset Password field is another than password</p>
     </div>
 </div>
-  <div class="form-group">
+ <!-- <div class="form-group">
   <mat-form-field>
   <label for="address">Address</label>
   <input id="address" matInput type="text" class="form-control" name="address" [(ngModel)]="user.address" />
@@ -63,8 +63,8 @@
   </div>
   <div class="form-group">
       <label for="image_path">Image</label>
-      <input id="image_path"  type="file" class="form-control" name="image_path" [(ngModel)]="user.image_path" required/>
-  </div>
+      <input id="image_path"  type="file" class="form-control" name="image_path" [(ngModel)]="user.image_path" (change)="onFileSelected($event)" required/>
+  </div>-->
   <div class="form-group">
     <button mat-button (click)="addUser()">Добавити</button>
   </div>

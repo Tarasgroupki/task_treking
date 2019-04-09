@@ -10,29 +10,73 @@ export class TasksService {
   constructor(private _http: HttpClient) { }
 
   getUsers(){
-      return this._http.get('http://task_treking.ua/public/api/users').map(result => result);
+      return this._http.get('http://task-treking/public/api/users',{
+          headers: new HttpHeaders({'Accept': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+      }).map(result => result);
+  }
+  getSprints(){
+      return this._http.get('http://task-treking/public/api/sprints',{
+            headers: new HttpHeaders({'Accept': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+      }).map(result => result);
   }
   getInvoices(){
-      return this._http.get('http://task_treking.ua/public/api/invoices').map(result => result);
+      return this._http.get('http://task-treking/public/api/invoices').map(result => result);
   }
   getTasks(){
-      return this._http.get('http://task_treking.ua/public/api/tasks').map(result => result);
+      return this._http.get('http://task-treking/public/api/tasks', {
+          headers: new HttpHeaders({'Accept': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+      }).map(result => result);
   }
   showTask(id: number){
-      return this._http.get('http://task_treking.ua/public/api/tasks/'+id+'').map(result => result);
+      return this._http.get('http://task-treking/public/api/tasks/'+id+'', {
+          headers: new HttpHeaders({'Accept': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+      }).map(result => result);
   }
   createTask(arr: object){
-      return this._http.post('http://task_treking.ua/public/api/tasks', arr, {
-          headers: new HttpHeaders().set('Accept', 'application/json')
+      return this._http.post('http://task-treking/public/api/tasks', arr, {
+          headers: new HttpHeaders({'Accept': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
       }).map(result => result);
   }
     updateTask(id: number,arr: object){
-        return this._http.put('http://task_treking.ua/public/api/tasks/'+id+'', arr, {
-            headers: new HttpHeaders().set('Accept', 'application/json')
+        return this._http.put('http://task-treking/public/api/tasks/'+id+'', arr, {
+            headers: new HttpHeaders({'Accept': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),})
         }).map(result => result);
     }
     deleteTask(id:number){
-      return this._http.delete('http://task_treking.ua/public/api/tasks/'+id+'').map(result => result);
+      return this._http.delete('http://task-treking/public/api/tasks/'+id+'', {
+          headers: new HttpHeaders({'Accept': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+      }).map(result => result);
+    }
+    createVote(arr: object){
+        return this._http.post('http://task-treking/public/api/votes', arr, {
+            headers: new HttpHeaders({'Accept': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+        }).map(result => result);
+    }
+    checkVote(id: number){
+        return this._http.get('http://task-treking/public/api/vote_count/'+id+'', {
+            headers: new HttpHeaders({'Accept': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+        }).map(result => result);
+    }
+    checkVoter(id: string){
+        return this._http.get('http://task-treking/public/api/vote_counter/'+id+'', {
+            headers: new HttpHeaders({'Accept': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+        }).map(result => result);
+    }
+    updateVote(id: number,arr: object){
+        return this._http.put('http://task-treking/public/api/votes/'+id+'', arr, {
+            headers: new HttpHeaders({'Accept': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+        }).map(result => result);
     }
   /*getClients(): Observable<ClientsInterface[]> {
     return this.http.get(this._clientsURL).map((response: Responce) => {
