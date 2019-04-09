@@ -36,6 +36,7 @@
   <ng-container matColumnDef="image_path">
     <mat-header-cell *matHeaderCellDef> Buttons </mat-header-cell>
     <mat-cell *matCellDef="let user">
+      <a routerLink="/users/add_role/{{ user['id'] }}" routerLinkActive="active"><button mat-button class="add_role">{{ 'Добавити ролі' }}</button></a>
       <a routerLink="/users/add/{{ user['id'] }}" routerLinkActive="active"><button mat-button class="edit">{{ 'Редагувати' }}</button></a>
       <a routerLink="/users/delete/{{ user['id'] }}" routerLinkActive="active"><button mat-button class="delete">{{ 'Видалити' }}</button></a>
     </mat-cell>

@@ -9,24 +9,65 @@ export class UsersService {
 
   constructor(private _http: HttpClient) { }
 
-  getUsers(){
-      return this._http.get('http://task_treking.ua/public/api/users').map(result => result);
+  fileUpload(arr:object) {
+      return this._http.post('http://task-treking/public/api/fileUpload', arr, {
+          headers: new HttpHeaders({'Accept': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+      });
   }
-  showUser(id: number){
-      return this._http.get('http://task_treking.ua/public/api/users/'+id+'').map(result => result);
-  }
-  createUser(arr: object){
-      return this._http.post('http://task_treking.ua/public/api/users', arr, {
-          headers: new HttpHeaders().set('Accept', 'application/json')
+  getRoles(id: number){
+      return this._http.get('http://task-treking/public/api/users/add_roles/'+id+'',{
+          headers: new HttpHeaders({'Accept': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
       }).map(result => result);
   }
-    updateUser(id: number,arr: object){
-        return this._http.put('http://task_treking.ua/public/api/users/'+id+'', arr, {
-            headers: new HttpHeaders().set('Accept', 'application/json')
+  AssignRoles(id: number, arr: object){
+      return this._http.post('http://task-treking/public/api/users/assign/'+id+'', arr,{
+          headers: new HttpHeaders({'Accept': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+      }).map(result => result);
+  }
+  getUsers(){
+      return this._http.get('http://task-treking/public/api/users',{
+          headers: new HttpHeaders({'Accept': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+      }).map(result => result);
+  }
+  showUser(id: number){
+        return this._http.get('http://task-treking/public/api/users/'+id+'', {
+            headers: new HttpHeaders({'Accept': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),})
         }).map(result => result);
     }
-    deleteUser(id:number){
-      return this._http.delete('http://task_treking.ua/public/api/users/'+id+'').map(result => result);
+    showUserProfile(id: number){
+        return this._http.get('http://task-treking/public/api/profile/'+id+'', {
+            headers: new HttpHeaders({'Accept': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+        }).map(result => result);
+    }
+  createUser(arr: object) {
+      return this._http.post('http://task-treking/public/api/users', arr, {
+          headers: new HttpHeaders({'Accept': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+      }).map(result => result);
+  }
+    updateUser(id: number, arr: object) {
+        return this._http.put('http://task-treking/public/api/users/'+id+'', arr, {
+            headers: new HttpHeaders({'Accept': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+        }).map(result => result);
+    }
+    updateProfileUser(id: number, arr: object) {
+      return this._http.put('http://task-treking/public/api/profile/'+id+'', arr, {
+          headers: new HttpHeaders({'Accept': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+      }).map(result => result);
+    }
+    deleteUser(id: number) {
+      return this._http.delete('http://task-treking/public/api/users/'+id+'',{
+          headers: new HttpHeaders({'Accept': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+      }).map(result => result);
     }
   /*getClients(): Observable<ClientsInterface[]> {
     return this.http.get(this._clientsURL).map((response: Responce) => {

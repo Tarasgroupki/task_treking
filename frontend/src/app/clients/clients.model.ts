@@ -8,7 +8,7 @@ export class Client{
                 public city: string,
                 public company_name: string,
                 public vat: string,
-                public industry: string,
+              //  public industry: string,
                 public company_type: string,
                 public user_id: number,
                 public industry_id: number

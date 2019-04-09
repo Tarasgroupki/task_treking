@@ -41,12 +41,12 @@ class UsersController extends APIBaseController
             $success['user'] = $user;
             $success['permissions'] = $permissions;
 
-            return $this->sendResponse($success, 'User is authentificate successfully!');
+            return $this->sendResponse($success, 'User is authenticate successfully!');
 
         }
         else{
            //$error['message'] = 'Неправильний логін, або пароль!';
-            return $this->sendResponse(NULL, 'Authentification error!');
+            return $this->sendResponse(NULL, 'Authentication error!');
 
         }
     }

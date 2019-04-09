@@ -9,24 +9,34 @@ import { User } from './users.model';
   templateUrl: './users-create.component.html',
   styleUrls: ['./users.component.css']
 })
-export class UsersCreateComponent implements OnInit{
+export class UsersCreateComponent implements OnInit {
    // log(x) { console.log(x); }
     ///client: any = 1;
     user: any = new User('', '', '', '', '', '', '');
     users: User[] = [];
-    /*users = [
-        {value: 0, viewValue: ''}
-    ];*/
+    //selectedFile = null;
 
     constructor(public _user_obj: UsersService) {
 
     }
 
-    addUser(){
-        this.users.push(new User(this.user.name, this.user.email, this.user.password, this.user.address, this.user.work_number, this.user.personal_number, this.user.image_path));
+   /* onFileSelected(event) {
+        this.selectedFile = <File>event.target.files[0];
+        //console.log(this.selectedFile);
+    }*/
+
+    addUser() {
+       // const fd = new FormData();
+     //   fd.append('image_path', this.selectedFile, this.selectedFile.name);
+        //console.log(fd);
+       // this._user_obj.fileUpload(fd).subscribe(res => {
+      //      console.log(res);
+     //   });
+        this.users.push(new User(this.user.name, this.user.email, this.user.password, null , null, null, null));
         console.log(this.users);
         this._user_obj.createUser(this.users).subscribe(res => {
         this.user = res;
+        this.users.length = 0;
         console.log(res);
     });
     }

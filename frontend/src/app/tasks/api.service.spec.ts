@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { TasksService } from './tasks.service';
 
-describe('TasksService', () => {
+describe('SprintsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [TasksService]

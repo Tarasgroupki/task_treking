@@ -12,6 +12,7 @@ class Task extends Model
         'description',
         'status',
         'user_assigned_id',
+        'sprint_assigned_id',
         'user_created_id',
         'client_id',
         'deadline'

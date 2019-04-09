@@ -20,6 +20,7 @@ class TasksTable extends Migration
             $table->integer('status');
             $table->integer('user_assigned_id')->unsigned();
             $table->foreign('user_assigned_id')->references('id')->on('users');
+            $table->integer('sprint_assigned_id')->unsigned();
             $table->integer('user_created_id')->unsigned();
             $table->foreign('user_created_id')->references('id')->on('users');
             $table->integer('client_id')->unsigned();
