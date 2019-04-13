@@ -118,7 +118,7 @@ class ClientsController extends APIBaseController
             'city' => 'string',
             'company_name' => 'string',
             'vat' => 'string',
-            'industry' => '',
+           // 'industry' => '',
             'company_type' => 'string',
             'user_id' => 'integer',
             'industry_id' => 'integer'
@@ -136,7 +136,7 @@ class ClientsController extends APIBaseController
         $client->city = $input['city'];
         $client->company_name = $input['company_name'];
         $client->vat = $input['vat'];
-        $client->industry = null;
+       // $client->industry = null;
         $client->company_type = $input['company_type'];
         $client->user_id = $input['user_id'];
         $client->industry_id = $input['industry_id'];

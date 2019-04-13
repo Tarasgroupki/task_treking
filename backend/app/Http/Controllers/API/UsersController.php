@@ -29,7 +29,7 @@ class UsersController extends APIBaseController
 
     public function actionLogin(Request $request) {
         $input = $request->all();
-
+        //print_r($input);die;
         if(Auth::attempt(['email' => $input[0]['email'], 'password' => $input[0]['password']])) {
             $user = Auth::user();
             $success['permissions'] = $user->getAllPermissions();

@@ -57,7 +57,7 @@
         <a class="links" *ngIf="LogginningData['permissions'].indexOf( 'create-leads' ) != -1" routerLink="leads" routerLinkActive="active">Список термінів</a>
       </mat-expansion-panel>
         <mat-expansion-panel
-                *ngIf="LogginningData['permissions'].indexOf( 'create-leads' ) != -1"
+                *ngIf="LogginningData['permissions'].indexOf( 'create-sprints' ) != -1"
                 (opened)="panelOpenState = true"
                 (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
@@ -65,9 +65,9 @@
                     <h3>Блоки</h3>
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <a class="links" *ngIf="LogginningData['permissions'].indexOf( 'create-leads' ) != -1" routerLink="sprint/create" routerLinkActive="active">Добавити новий спрінт</a>
+            <a class="links" *ngIf="LogginningData['permissions'].indexOf( 'create-sprints' ) != -1" routerLink="sprint/create" routerLinkActive="active">Добавити новий спрінт</a>
             <br />
-            <a class="links" *ngIf="LogginningData['permissions'].indexOf( 'create-leads' ) != -1" routerLink="sprints" routerLinkActive="active">Список спрінтів</a>
+            <a class="links" *ngIf="LogginningData['permissions'].indexOf( 'create-sprints' ) != -1" routerLink="sprints" routerLinkActive="active">Список спрінтів</a>
         </mat-expansion-panel>
         <mat-expansion-panel *ngIf="LogginningData['permissions'].indexOf( 'create-roles' ) != -1" (opened)="panelOpenState = true"
                              (closed)="panelOpenState = false">

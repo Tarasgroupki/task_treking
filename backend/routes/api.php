@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('index', 'API\ClientsController')->middleware(['auth:api']);
 Route::resource('tasks', 'API\TasksController')->middleware(['auth:api', 'scope:create-tasks,edit-tasks,delete-tasks']);
 Route::resource('leads', 'API\LeadsController')->middleware(['auth:api', 'scope:create-tasks,edit-tasks,delete-tasks']);
-Route::resource('sprints', 'API\SprintsController')->middleware(['auth:api', 'scope:create-leads,edit-leads,delete-leads']);
+Route::resource('sprints', 'API\SprintsController')->middleware(['auth:api', 'scope:create-sprints,edit-sprints,delete-sprints']);
 //Route::resource('users', 'API\UsersController')->middleware(['auth:api', 'scope:create-users,edit-users,delete-users']);
 Route::get('points', 'API\TasksController@story_points');
 Route::get('vote_count/{id}','API\TasksController@votes');

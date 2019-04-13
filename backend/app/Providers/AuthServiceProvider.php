@@ -47,7 +47,10 @@ class AuthServiceProvider extends ServiceProvider
             'delete-leads' => 'Видаляти терміни',
             'create-roles' => 'Створювати ролі',
             'edit-roles' => 'Редагувати ролі',
-            'delete-roles' => 'Видаляти ролі'
+            'delete-roles' => 'Видаляти ролі',
+            'create-sprints' => 'Створювати блоки',
+            'edit-sprints' => 'Редагувати блоки',
+            'delete-sprints' => 'Видаляти блоки'
         ]);
     }
 }

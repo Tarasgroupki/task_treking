@@ -18,7 +18,9 @@ export class AuthComponent implements OnInit {
   //  displayedColumns = ['id', 'name', 'email', 'password', 'address', 'work_number', 'personal_number', 'image_path'];
 
     constructor(private _router: Router, private _auth: AuthService) {
-
+        if(localStorage.getItem('errMessage')) {
+            this.errMessage = 'Неправильний логін, або пароль!';
+        }
     }
 
     ngOnInit() {
@@ -35,16 +37,19 @@ export class AuthComponent implements OnInit {
        // console.log(this.authenticate);
         this._auth.getAuth(this.authenticate).subscribe(res => {
                 this.auth = res['data'];
-                console.log(res);
+               // console.log(typeof this.auth);
             if (this.auth) {
                 localStorage.setItem('LoggedIn', JSON.stringify(this.auth));
                 localStorage.setItem('token', this.auth['token']);
+                localStorage.removeItem('errMessage');
                 console.log(JSON.parse(localStorage.getItem('LoggedIn')));
                 window.location.reload();
             }
             else {
-                this.authenticate.length = 0;
+                localStorage.setItem('errMessage', 'true');
+               // this.authenticate.length = 0;
                 this.errMessage = 'Неправильний логін, або пароль!';
+                window.location.reload();
             }
            // this._router.navigate(['profile']);
             console.log(this.errMessage);
