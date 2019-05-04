@@ -51,6 +51,7 @@ import { UsersProfileComponent } from './users/users-profile.component';
 import {GraphComponent} from './graph/graph.component';
 import {GraphService} from './graph/graph.service';
 import {SprintsService} from './sprints/sprints.service';
+import {NotFoundComponent} from './not-found/not-found.component';
 
 
 @NgModule({
@@ -89,7 +90,8 @@ import {SprintsService} from './sprints/sprints.service';
     SettingsUpdateComponent,
     AuthLogoutsComponent,
     UsersProfileComponent,
-    GraphComponent
+    GraphComponent,
+    NotFoundComponent
       ],
   imports: [
     BrowserModule,
@@ -229,6 +231,10 @@ import {SprintsService} from './sprints/sprints.service';
             path: 'sprints/delete/:id',
             component: SprintsDeleteComponent
         },
+        {
+            path: '**',
+            component: NotFoundComponent
+        }
     ]),
     FormsModule,
     ReactiveFormsModule,

@@ -1,0 +1,1664 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "L5 Swagger API",
+        "description": "L5 Swagger API description",
+        "contact": {
+            "email": "darius@matulionis.lt"
+        },
+        "version": "1.0.0"
+    },
+    "host": "task-treking/public/",
+    "basePath": "/api",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {
+        "/index": {
+            "get": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Get list of clients",
+                "description": "Returns list of clients",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Create new client",
+                "parameters": [
+                    {
+                        "name": "client",
+                        "in": "body",
+                        "description": "Client object that needs to be added to the store",
+                        "schema": {
+                            "properties": {
+                                "id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "primary_number": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "secondary_number": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "address": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "zipcode": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "city": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "company_name": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "vat": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "company_type": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "user_id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                },
+                                "industry_id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "default": [
+                            {
+                                "name": "Taras",
+                                "email": "taras2andry@mail.ru",
+                                "primary_number": "507212852",
+                                "secondary_number": "507212852",
+                                "address": "Kalush",
+                                "zipcode": "77300",
+                                "city": "Kalush",
+                                "company_name": "IFNTUOG",
+                                "vat": 23,
+                                "company_type": "IT",
+                                "user_id": 1,
+                                "industry_id": 1
+                            }
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/index/{id}": {
+            "get": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Get clients information",
+                "description": "Returns clients data",
+                "operationId": "getIndexById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Project id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Update new client",
+                "parameters": [
+                    {
+                        "name": "client",
+                        "in": "body",
+                        "description": "Client object that needs to be added to the store",
+                        "schema": {
+                            "properties": {
+                                "id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "primary_number": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "secondary_number": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "address": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "zipcode": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "city": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "company_name": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "vat": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "company_type": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "user_id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                },
+                                "industry_id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "default": [
+                            {
+                                "name": "Taras",
+                                "email": "taras2andry@mail.ru",
+                                "primary_number": "507212852",
+                                "secondary_number": "507212852",
+                                "address": "Kalush",
+                                "zipcode": "77300",
+                                "city": "Kalush",
+                                "company_name": "IFNTUOG",
+                                "vat": 23,
+                                "company_type": "IT",
+                                "user_id": 1,
+                                "industry_id": 1
+                            }
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Delete Client",
+                "operationId": "ApiV1DeleteClient",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Delete Client",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/leads": {
+            "get": {
+                "tags": [
+                    "Leads"
+                ],
+                "summary": "Get list of leads",
+                "description": "Returns list of projects",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Leads"
+                ],
+                "summary": "Create new lead",
+                "parameters": [
+                    {
+                        "name": "lead",
+                        "in": "body",
+                        "description": "Lead object that needs to be added to the store",
+                        "schema": {
+                            "properties": {
+                                "id": {
+                                    "description": "Class LeadsController",
+                                    "type": "integer"
+                                },
+                                "title": {
+                                    "description": "Class LeadsController",
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "description": "Class LeadsController",
+                                    "type": "text"
+                                },
+                                "status": {
+                                    "description": "Class LeadsController",
+                                    "type": "available"
+                                },
+                                "user_assigned_id": {
+                                    "description": "Class LeadsController",
+                                    "type": "integer"
+                                },
+                                "user_created_id": {
+                                    "description": "Class LeadsController",
+                                    "type": "integer"
+                                },
+                                "client_id": {
+                                    "description": "Class LeadsController",
+                                    "type": "integer"
+                                },
+                                "contact_date": {
+                                    "description": "Class LeadsController",
+                                    "type": "date"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/leads/{id}": {
+            "get": {
+                "tags": [
+                    "Leads"
+                ],
+                "summary": "Get leads information",
+                "description": "Returns leads data",
+                "operationId": "getIndexById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Project id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Leads"
+                ],
+                "summary": "Update new lead",
+                "parameters": [
+                    {
+                        "name": "lead",
+                        "in": "body",
+                        "description": "Lead object that needs to be added to the store",
+                        "schema": {
+                            "properties": {
+                                "id": {
+                                    "description": "Class LeadsController",
+                                    "type": "integer"
+                                },
+                                "title": {
+                                    "description": "Class LeadsController",
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "description": "Class LeadsController",
+                                    "type": "text"
+                                },
+                                "status": {
+                                    "description": "Class LeadsController",
+                                    "type": "available"
+                                },
+                                "user_assigned_id": {
+                                    "description": "Class LeadsController",
+                                    "type": "integer"
+                                },
+                                "user_created_id": {
+                                    "description": "Class LeadsController",
+                                    "type": "integer"
+                                },
+                                "client_id": {
+                                    "description": "Class LeadsController",
+                                    "type": "integer"
+                                },
+                                "contact_date": {
+                                    "description": "Class LeadsController",
+                                    "type": "date"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Leads"
+                ],
+                "summary": "Delete Lead",
+                "operationId": "ApiV1DeleteLead",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Delete Lead",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/rules": {
+            "get": {
+                "tags": [
+                    "Rules"
+                ],
+                "summary": "Get list of rules",
+                "description": "Returns list of rules",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Rules"
+                ],
+                "summary": "Create new rule",
+                "parameters": [
+                    {
+                        "name": "rule",
+                        "in": "body",
+                        "description": "Rule object that needs to be added to the store",
+                        "schema": {
+                            "properties": {
+                                "id": {
+                                    "description": "Class RulesController",
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "description": "Class RulesController",
+                                    "type": "string"
+                                },
+                                "guard_name": {
+                                    "description": "Class RulesController",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/rules/{id}": {
+            "get": {
+                "tags": [
+                    "Rules"
+                ],
+                "summary": "Get rules information",
+                "description": "Returns rules data",
+                "operationId": "getIndexById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Project id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Rules"
+                ],
+                "summary": "Update new rule",
+                "parameters": [
+                    {
+                        "name": "rule",
+                        "in": "body",
+                        "description": "Rule object that needs to be added to the store",
+                        "schema": {
+                            "properties": {
+                                "id": {
+                                    "description": "Class RulesController",
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "description": "Class RulesController",
+                                    "type": "string"
+                                },
+                                "guard_name": {
+                                    "description": "Class RulesController",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/rules/add_permissions/{id}": {
+            "get": {
+                "tags": [
+                    "Rules"
+                ],
+                "summary": "Set permissions to roles",
+                "description": "Returns rules data",
+                "operationId": "getIndexById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Project id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/rules/{id}": {
+            "delete": {
+                "tags": [
+                    "Rules"
+                ],
+                "summary": "Delete Rule",
+                "operationId": "ApiV1DeleteRule",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Delete Rule",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/sprints": {
+            "get": {
+                "tags": [
+                    "Sprints"
+                ],
+                "summary": "Get list of sprints",
+                "description": "Returns list of sprints",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Sprints"
+                ],
+                "summary": "Sample",
+                "parameters": [
+                    {
+                        "name": "sprint",
+                        "in": "body",
+                        "description": "Sprint object that needs to be added to the store",
+                        "schema": {
+                            "properties": {
+                                "id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                },
+                                "title": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "description": "Class ClientsController",
+                                    "type": "text"
+                                },
+                                "status": {
+                                    "description": "Class ClientsController",
+                                    "type": "available"
+                                },
+                                "user_assigned_id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                },
+                                "user_created_id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                },
+                                "deadline": {
+                                    "description": "Class ClientsController",
+                                    "type": "date"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/sprints/{id}": {
+            "get": {
+                "tags": [
+                    "Sprints"
+                ],
+                "summary": "Get sprints information",
+                "description": "Returns sprints data",
+                "operationId": "getIndexById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Project id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Sprints"
+                ],
+                "summary": "Update new sprint",
+                "parameters": [
+                    {
+                        "name": "sprint",
+                        "in": "body",
+                        "description": "Sprint object that needs to be added to the store",
+                        "schema": {
+                            "properties": {
+                                "id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                },
+                                "title": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "description": "Class ClientsController",
+                                    "type": "text"
+                                },
+                                "status": {
+                                    "description": "Class ClientsController",
+                                    "type": "available"
+                                },
+                                "user_assigned_id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                },
+                                "user_created_id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                },
+                                "deadline": {
+                                    "description": "Class ClientsController",
+                                    "type": "date"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Sprints"
+                ],
+                "summary": "Delete Sprint",
+                "operationId": "ApiV1DeleteSprint",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Delete Sprint",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/pointses/{id}": {
+            "get": {
+                "tags": [
+                    "Sprints"
+                ],
+                "summary": "Get story points",
+                "description": "Returns sprints data",
+                "operationId": "getIndexById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Project id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/tasks": {
+            "get": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Get list of tasks",
+                "description": "Returns list of tasks",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Create new task",
+                "parameters": [
+                    {
+                        "name": "task",
+                        "in": "body",
+                        "description": "Task object that needs to be added to the store",
+                        "schema": {
+                            "properties": {
+                                "id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                },
+                                "title": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "description": "Class ClientsController",
+                                    "type": "text"
+                                },
+                                "status": {
+                                    "description": "Class ClientsController",
+                                    "type": "available"
+                                },
+                                "user_assigned_id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                },
+                                "sprint_assigned_id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                },
+                                "user_created_id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                },
+                                "client_id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                },
+                                "deadline": {
+                                    "description": "Class ClientsController",
+                                    "type": "date"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/tasks/{id}": {
+            "get": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Get tasks information",
+                "description": "Returns tasks data",
+                "operationId": "getIndexById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Project id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Update new task",
+                "parameters": [
+                    {
+                        "name": "client",
+                        "in": "body",
+                        "description": "Task object that needs to be added to the store",
+                        "schema": {
+                            "properties": {
+                                "id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                },
+                                "title": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "description": "Class ClientsController",
+                                    "type": "text"
+                                },
+                                "status": {
+                                    "description": "Class ClientsController",
+                                    "type": "available"
+                                },
+                                "user_assigned_id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                },
+                                "sprint_assigned_id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                },
+                                "user_created_id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                },
+                                "client_id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                },
+                                "deadline": {
+                                    "description": "Class ClientsController",
+                                    "type": "date"
+                                }
+                            }
+                        },
+                        "default": [
+                            {
+                                "name": "Taras",
+                                "email": "taras2andry@mail.ru",
+                                "primary_number": "507212852",
+                                "secondary_number": "507212852",
+                                "address": "Kalush",
+                                "zipcode": "77300",
+                                "city": "Kalush",
+                                "company_name": "IFNTUOG",
+                                "vat": 23,
+                                "company_type": "IT",
+                                "user_id": 1,
+                                "industry_id": 1
+                            }
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Delete Task",
+                "operationId": "ApiV1DeleteTask",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Delete Task",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/voter/{id}": {
+            "get": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Get votes information",
+                "description": "Returns tasks data",
+                "operationId": "getIndexById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Project id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get list of users",
+                "description": "Returns list of users",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Create new user",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User object that needs to be added to the store",
+                        "schema": {
+                            "properties": {
+                                "id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get users information",
+                "description": "Returns users data",
+                "operationId": "getIndexById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Project id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update new user",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User object that needs to be added to the store",
+                        "schema": {
+                            "properties": {
+                                "id": {
+                                    "description": "Class ClientsController",
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "description": "Class ClientsController",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Delete User",
+                "operationId": "ApiV1DeleteUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Delete User",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/users/add_roles/{id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get user roles",
+                "description": "Returns users data",
+                "operationId": "getIndexById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Project id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/users/assign/{id}": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Set roles to users",
+                "description": "Returns users data",
+                "operationId": "getIndexById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Project id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/fileUpload": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Upload Image",
+                "parameters": [
+                    {
+                        "name": "file",
+                        "in": "body",
+                        "description": "Uploading image",
+                        "schema": {}
+                    },
+                    {
+                        "name": "additionalMetadata",
+                        "in": "body",
+                        "description": "Additional data to pass to server",
+                        "schema": {}
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/auth": {
+            "post": {
+                "tags": [
+                    "Authorization"
+                ],
+                "summary": "Sample",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "sign in",
+                        "schema": "",
+                        "default": [
+                            {
+                                "email": "taras2andry@mail.ru",
+                                "password": "1234sstr"
+                            }
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Client": {
+            "description": "Client",
+            "properties": {
+                "id": {
+                    "description": "Class ClientsController",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "name": {
+                    "description": "Class ClientsController",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "Class ClientsController",
+                    "type": "string"
+                },
+                "primary_number": {
+                    "description": "Class ClientsController",
+                    "type": "string"
+                },
+                "secondary_number": {
+                    "description": "Class ClientsController",
+                    "type": "string"
+                },
+                "address": {
+                    "description": "Class ClientsController",
+                    "type": "string"
+                },
+                "zipcode": {
+                    "description": "Class ClientsController",
+                    "type": "string"
+                },
+                "city": {
+                    "description": "Class ClientsController",
+                    "type": "string"
+                },
+                "company_name": {
+                    "description": "Class ClientsController",
+                    "type": "string"
+                },
+                "vat": {
+                    "description": "Class ClientsController",
+                    "type": "string"
+                },
+                "company_type": {
+                    "description": "Class ClientsController",
+                    "type": "string"
+                },
+                "user_id": {
+                    "description": "Class ClientsController",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "industry_id": {
+                    "description": "Class ClientsController",
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "type": "object"
+        },
+        "Lead": {
+            "description": "Lead",
+            "properties": {
+                "id": {
+                    "description": "Class LeadsController",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "title": {
+                    "description": "Class LeadsController",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Class LeadsController",
+                    "type": "text"
+                },
+                "status": {
+                    "description": "Class LeadsController",
+                    "type": "available"
+                },
+                "user_assigned_id": {
+                    "description": "Class LeadsController",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "user_created_id": {
+                    "description": "Class LeadsController",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "client_id": {
+                    "description": "Class LeadsController",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "contact_date": {
+                    "description": "Class LeadsController",
+                    "type": "date",
+                    "format": "date-time"
+                }
+            },
+            "type": "object"
+        },
+        "Sprint": {
+            "description": "Sprint",
+            "properties": {
+                "id": {
+                    "description": "Class ClientsController",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "title": {
+                    "description": "Class ClientsController",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Class ClientsController",
+                    "type": "text"
+                },
+                "status": {
+                    "description": "Class ClientsController",
+                    "type": "string",
+                    "enum": [
+                        "\u0412\u0438\u043a\u043e\u043d\u0430\u043d\u043e",
+                        "\u0412\u0438\u043a\u043e\u043d\u0443\u0454\u0442\u044c\u0441\u044f",
+                        "\u041d\u0435 \u0432\u0438\u043a\u043e\u043d\u0443\u0454\u0442\u044c\u0441\u044f"
+                    ]
+                },
+                "user_assigned_id": {
+                    "description": "Class ClientsController",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "user_created_id": {
+                    "description": "Class ClientsController",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "deadline": {
+                    "description": "Class ClientsController",
+                    "type": "date",
+                    "format": "date-time"
+                }
+            },
+            "type": "object"
+        },
+        "Task": {
+            "description": "Task",
+            "properties": {
+                "id": {
+                    "description": "Class ClientsController",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "title": {
+                    "description": "Class ClientsController",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Class ClientsController",
+                    "type": "text"
+                },
+                "status": {
+                    "description": "Class ClientsController",
+                    "type": "string",
+                    "enum": [
+                        "\u0412\u0438\u043a\u043e\u043d\u0430\u043d\u043e",
+                        "\u0412\u0438\u043a\u043e\u043d\u0443\u0454\u0442\u044c\u0441\u044f",
+                        "\u041d\u0435 \u0432\u0438\u043a\u043e\u043d\u0443\u0454\u0442\u044c\u0441\u044f"
+                    ]
+                },
+                "user_assigned_id": {
+                    "description": "Class ClientsController",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "sprint_assigned_id": {
+                    "description": "Class ClientsController",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "user_created_id": {
+                    "description": "Class ClientsController",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "client_id": {
+                    "description": "Class ClientsController",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "deadline": {
+                    "description": "Class ClientsController",
+                    "type": "date",
+                    "format": "date-time"
+                }
+            },
+            "type": "object"
+        },
+        "User": {
+            "description": "User",
+            "properties": {
+                "id": {
+                    "description": "Class ClientsController",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "name": {
+                    "description": "Class ClientsController",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "Class ClientsController",
+                    "type": "string"
+                },
+                "password": {
+                    "description": "Class ClientsController",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

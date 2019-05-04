@@ -55,7 +55,9 @@ export class UsersService {
         return this._http.put('http://task-treking/public/api/users/'+id+'', arr, {
             headers: new HttpHeaders({'Accept': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem('token'),})
-        }).map(result => result);
+        }).map(result => result).catch(() => {
+            return  window.location.href = 'http://localhost:4200/not-found';
+        });
     }
     updateProfileUser(id: number, arr: object) {
       return this._http.put('http://task-treking/public/api/profile/'+id+'', arr, {

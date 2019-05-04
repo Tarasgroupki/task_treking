@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import 'rxjs/add/operator/map';
+//import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class ClientsService {
@@ -25,7 +27,9 @@ export class ClientsService {
       return this._http.get('http://task-treking/public/api/index/'+id+'',{
           headers: new HttpHeaders({'Accept': 'application/json',
               'Authorization': 'Bearer ' + localStorage.getItem('token'),})
-      }).map(result => result);
+      }).map(result => result).catch(() => {
+          return  window.location.href = 'http://localhost:4200/not-found';
+      });
   }
   createClient(arr: object){
       return this._http.post('http://task-treking/public/api/index', arr, {
@@ -37,7 +41,9 @@ export class ClientsService {
         return this._http.put('http://task-treking/public/api/index/'+id+'', arr, {
             headers: new HttpHeaders({'Accept': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem('token'),})
-        }).map(result => result);
+        }).map(result => result).catch(() => {
+            return  window.location.href = 'http://localhost:4200/not-found';
+        });
     }
     deleteClient(id:number){
       return this._http.delete('http://task-treking/public/api/index/'+id+'',{

@@ -17,6 +17,204 @@ use Illuminate\Http\Response;
 use Illuminate\Http\UploadedFile;
 use App\Http\Controllers\API\APIBaseController as APIBaseController;
 
+/**
+ * Class ClientsController
+ * @package App\Http\Controllers\API
+ *
+ *
+ *
+ *  * @SWG\Get(
+ *      path="/users",
+ *      tags={"Users"},
+ *      summary="Get list of users",
+ *      description="Returns list of users",
+ *      @SWG\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @SWG\Response(response=400, description="Bad request"),
+ *       security={
+ *           {
+ *              "Bearer":{}
+ *          }
+ *       }
+ *     )
+ *
+ * Returns list of users
+ *
+ *  * @SWG\Get(
+ *      path="/users/{id}",
+ *      operationId="getIndexById",
+ *      tags={"Users"},
+ *      summary="Get users information",
+ *      description="Returns users data",
+ *      @SWG\Parameter(
+ *          name="id",
+ *          description="Project id",
+ *          required=true,
+ *          type="integer",
+ *          in="path"
+ *      ),
+ *      @SWG\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *      @SWG\Response(response=400, description="Bad request"),
+ *      @SWG\Response(response=404, description="Resource Not Found"),
+ *      security={
+ *         {
+ *              "Bearer":{}
+ *          }
+ *     },
+ * )
+ *
+ * * @SWG\Post(
+ *   path="/users",
+ *   tags={"Users"},
+ *   summary="Create new user",
+ *    @SWG\Parameter(
+ *          name="user",
+ *  description="User object that needs to be added to the store",@SWG\Schema(
+ *     @SWG\Property(property="id", type="integer"),
+ *     @SWG\Property(property="name", type="string"),
+ *     @SWG\Property(property="email", type="string"),
+ *     @SWG\Property(property="password", type="string")
+ *     ),
+ *          in="body"
+ *      ),
+ *   @SWG\Response(response=200, description="successful operation"),
+ *       security={
+ *           {
+ *              "Bearer":{}
+ *          }
+ *       }
+ * )
+ *)
+ *
+ * *
+ * * @SWG\Put(
+ *   path="/users/{id}",
+ *   tags={"Users"},
+ *   summary="Update new user",
+ *    @SWG\Parameter(
+ *          name="user",
+ *  description="User object that needs to be added to the store",@SWG\Schema(
+ *     @SWG\Property(property="id", type="integer"),
+ *     @SWG\Property(property="name", type="string"),
+ *     @SWG\Property(property="email", type="string"),
+ *     @SWG\Property(property="password", type="string")
+ *     ),
+ *          in="body",
+ *      ),
+ *   @SWG\Response(response=200, description="successful operation"),
+ *       security={
+ *           {
+ *              "Bearer":{}
+ *          }
+ *       }
+ * )
+ *)
+ **
+ *  * @SWG\Get(
+ *      path="/users/add_roles/{id}",
+ *      operationId="getIndexById",
+ *      tags={"Users"},
+ *      summary="Get user roles",
+ *      description="Returns users data",
+ *      @SWG\Parameter(
+ *          name="id",
+ *          description="Project id",
+ *          required=true,
+ *          type="integer",
+ *          in="path"
+ *      ),
+ *      @SWG\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *      @SWG\Response(response=400, description="Bad request"),
+ *      @SWG\Response(response=404, description="Resource Not Found"),
+ *      security={
+ *         {
+ *              "Bearer":{}
+ *          }
+ *     },
+ * )
+ *
+ *  * @SWG\Post(
+ *      path="/users/assign/{id}",
+ *      operationId="getIndexById",
+ *      tags={"Users"},
+ *      summary="Set roles to users",
+ *      description="Returns users data",
+ *      @SWG\Parameter(
+ *          name="id",
+ *          description="Project id",
+ *          required=true,
+ *          type="integer",
+ *          in="path"
+ *      ),
+ *      @SWG\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *      @SWG\Response(response=400, description="Bad request"),
+ *      @SWG\Response(response=404, description="Resource Not Found"),
+ *      security={
+ *         {
+ *              "Bearer":{}
+ *          }
+ *     },
+ * )
+ *
+ * *   @SWG\Delete(
+ *      path="/users/{id}",
+ *      tags={"Users"},
+ *      operationId="ApiV1DeleteUser",
+ *      summary="Delete User",
+ *      @SWG\Parameter(
+ *          name="id",
+ *          description="Delete User",
+ *          in="path",
+ *          required=true,
+ *          type="string"
+ *      ),
+ *      @SWG\Response(
+ *          response=200,
+ *          description="Success"
+ *      ),
+ *     )
+ *
+ * *  @SWG\Post(
+ *   path="/fileUpload",
+ *   tags={"Users"},
+ *   summary="Upload Image",
+ *    @SWG\Parameter(
+ *          name="file",
+ *  description="Uploading image",@SWG\Schema(),
+ *          in="body"
+ *      ),
+ *     @SWG\Parameter(
+             name="additionalMetadata",
+ *     description="Additional data to pass to server",@SWG\Schema(),
+ *     in="body"
+ *     ),
+ *   @SWG\Response(response=200, description="successful operation")
+ * )
+ *)
+ * *   @SWG\Definition(
+ *     definition="User",
+ *     type="object",
+ *     description="User",
+ *     properties={
+ *     @SWG\Property(property="id", type="integer",format="int64"),
+ *     @SWG\Property(property="name", type="string"),
+ *     @SWG\Property(property="email", type="string"),
+ *     @SWG\Property(property="password", type="string")
+ *     }
+ * )
+ */
+
 class UsersController extends APIBaseController
 {
     public $successStatus = 200;

@@ -17,6 +17,9 @@ export class AppComponent implements OnInit {
       console.log(this.LogginningData);
        _router.events.subscribe((url: any) => {
          this.route = url['url'];
+         if(this.route == '/') {
+             this._router.navigate(['profile']);
+         }
        //  console.log(this.route);
        });
        //console.log(this._router.url);

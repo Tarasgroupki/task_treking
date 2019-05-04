@@ -12,6 +12,171 @@ use App\Models\Integration;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\APIBaseController as APIBaseController;
 
+/**
+ * Class ClientsController
+ * @package App\Http\Controllers\API
+ *
+ *
+ *
+ *  * @SWG\Get(
+ *      path="/tasks",
+ *      tags={"Tasks"},
+ *      summary="Get list of tasks",
+ *      description="Returns list of tasks",
+ *      @SWG\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @SWG\Response(response=400, description="Bad request"),
+ *       security={
+ *           {
+ *              "Bearer":{}
+ *          }
+ *       }
+ *     )
+ *
+ * Returns list of index
+ *
+ *  * @SWG\Get(
+ *      path="/tasks/{id}",
+ *      operationId="getIndexById",
+ *      tags={"Tasks"},
+ *      summary="Get tasks information",
+ *      description="Returns tasks data",
+ *      @SWG\Parameter(
+ *          name="id",
+ *          description="Project id",
+ *          required=true,
+ *          type="integer",
+ *          in="path"
+ *      ),
+ *      @SWG\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *      @SWG\Response(response=400, description="Bad request"),
+ *      @SWG\Response(response=404, description="Resource Not Found"),
+ *      security={
+ *         {
+ *              "Bearer":{}
+ *          }
+ *     },
+ * )
+ *
+ * * @SWG\Post(
+ *   path="/tasks",
+ *   tags={"Tasks"},
+ *   summary="Create new task",
+ *    @SWG\Parameter(
+ *          name="task",
+ *  description="Task object that needs to be added to the store",@SWG\Schema(
+ *     @SWG\Property(property="id", type="integer"),
+ *     @SWG\Property(property="title", type="string"),
+ *     @SWG\Property(property="description", type="text"),
+ *     @SWG\Property(property="status", type="available"),
+ *     @SWG\Property(property="user_assigned_id", type="integer"),
+ *     @SWG\Property(property="sprint_assigned_id", type="integer"),
+ *     @SWG\Property(property="user_created_id", type="integer"),
+ *     @SWG\Property(property="client_id", type="integer"),
+ *     @SWG\Property(property="deadline", type="date"),
+ *     ),
+ *          in="body"
+ *      ),
+ *   @SWG\Response(response=200, description="successful operation"),
+ *       security={
+ *           {
+ *              "Bearer":{}
+ *          }
+ *       }
+ * )
+ *)
+ *
+ * * @SWG\Put(
+ *   path="/tasks/{id}",
+ *   tags={"Tasks"},
+ *   summary="Update new task",
+ *    @SWG\Parameter(
+ *          name="client",
+ *  description="Task object that needs to be added to the store",@SWG\Schema(
+ *     @SWG\Property(property="id", type="integer"),
+ *     @SWG\Property(property="title", type="string"),
+ *     @SWG\Property(property="description", type="text"),
+ *     @SWG\Property(property="status", type="available"),
+ *     @SWG\Property(property="user_assigned_id", type="integer"),
+ *     @SWG\Property(property="sprint_assigned_id", type="integer"),
+ *     @SWG\Property(property="user_created_id", type="integer"),
+ *     @SWG\Property(property="client_id", type="integer"),
+ *     @SWG\Property(property="deadline", type="date"),
+ *     ),
+ *          in="body",
+ *     default={{"name":"Taras","email":"taras2andry@mail.ru","primary_number":"507212852","secondary_number":"507212852","address":"Kalush","zipcode":"77300","city":"Kalush","company_name":"IFNTUOG","vat":23,"company_type":"IT","user_id":1,"industry_id":1,}}
+ *      ),
+ *   @SWG\Response(response=200, description="successful operation"),
+ *       security={
+ *           {
+ *              "Bearer":{}
+ *          }
+ *       }
+ * )
+ *)
+ *
+ *  * @SWG\Get(
+ *      path="/voter/{id}",
+ *      operationId="getIndexById",
+ *      tags={"Tasks"},
+ *      summary="Get votes information",
+ *      description="Returns tasks data",
+ *      @SWG\Parameter(
+ *          name="id",
+ *          description="Project id",
+ *          required=true,
+ *          type="integer",
+ *          in="path"
+ *      ),
+ *      @SWG\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *      @SWG\Response(response=400, description="Bad request"),
+ *      @SWG\Response(response=404, description="Resource Not Found")
+ * )
+ *
+ * *   @SWG\Delete(
+ *      path="/tasks/{id}",
+ *      tags={"Tasks"},
+ *      operationId="ApiV1DeleteTask",
+ *      summary="Delete Task",
+ *      @SWG\Parameter(
+ *          name="id",
+ *          description="Delete Task",
+ *          in="path",
+ *          required=true,
+ *          type="string"
+ *      ),
+ *      @SWG\Response(
+ *          response=200,
+ *          description="Success"
+ *      ),
+ *     )
+ *
+ * *   @SWG\Definition(
+ *     definition="Task",
+ *     type="object",
+ *     description="Task",
+ *     properties={
+ *     @SWG\Property(property="id", type="integer",format="int64"),
+ *     @SWG\Property(property="title", type="string"),
+ *     @SWG\Property(property="description", type="text"),
+ *     @SWG\Property(property="status", type="string",enum={"Виконано", "Виконується", "Не виконується"}),
+ *     @SWG\Property(property="user_assigned_id", type="integer",format="int64"),
+ *     @SWG\Property(property="sprint_assigned_id", type="integer",format="int64"),
+ *     @SWG\Property(property="user_created_id", type="integer",format="int64"),
+ *     @SWG\Property(property="client_id", type="integer",format="int64"),
+ *     @SWG\Property(property="deadline", type="date",format="date-time"),
+ *     }
+ * )
+ */
+
 class TasksController extends APIBaseController
 {
     public function index()

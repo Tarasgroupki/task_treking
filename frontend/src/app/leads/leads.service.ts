@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class LeadsService {
@@ -30,7 +31,9 @@ export class LeadsService {
       return this._http.get('http://task-treking/public/api/leads/'+id+'',{
           headers: new HttpHeaders({'Accept': 'application/json',
               'Authorization': 'Bearer ' + localStorage.getItem('token'),})
-      }).map(result => result);
+      }).map(result => result).catch(() => {
+          return  window.location.href = 'http://localhost:4200/not-found';
+      });
   }
   createLead(parameters: { arr: object }){
       let arr = parameters.arr;
@@ -43,13 +46,27 @@ export class LeadsService {
         return this._http.put('http://task-treking/public/api/leads/'+id+'', arr, {
             headers: new HttpHeaders({'Accept': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem('token'),})
-        }).map(result => result);
+        }).map(result => result).catch(() => {
+            return  window.location.href = 'http://localhost:4200/not-found';
+        });;
     }
     deleteLead(id:number){
       return this._http.delete('http://task-treking/public/api/leads/'+id+'',{
           headers: new HttpHeaders({'Accept': 'application/json',
               'Authorization': 'Bearer ' + localStorage.getItem('token'),})
       }).map(result => result);
+    }
+    getUserById(id: number) {
+        return this._http.get('http://task-treking/public/api/users/'+id+'', {
+            headers: new HttpHeaders({'Accept': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+        }).map(result => result);
+    }
+    getClientById(id: number) {
+        return this._http.get('http://task-treking/public/api/index/'+id+'', {
+            headers: new HttpHeaders({'Accept': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+        }).map(result => result);
     }
   /*getClients(): Observable<ClientsInterface[]> {
     return this.http.get(this._clientsURL).map((response: Responce) => {

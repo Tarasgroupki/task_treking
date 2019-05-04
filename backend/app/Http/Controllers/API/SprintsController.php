@@ -13,6 +13,163 @@ use App\Vote;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\APIBaseController as APIBaseController;
 
+/**
+ * Class ClientsController
+ * @package App\Http\Controllers\API
+ *
+ *
+ *
+ *  * @SWG\Get(
+ *      path="/sprints",
+ *      tags={"Sprints"},
+ *      summary="Get list of sprints",
+ *      description="Returns list of sprints",
+ *      @SWG\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @SWG\Response(response=400, description="Bad request"),
+ *       security={
+ *          {
+ *              "Bearer":{}
+ *          }
+ *       }
+ *     )
+ *
+ * Returns list of index
+ *
+ *  * @SWG\Get(
+ *      path="/sprints/{id}",
+ *      operationId="getIndexById",
+ *      tags={"Sprints"},
+ *      summary="Get sprints information",
+ *      description="Returns sprints data",
+ *      @SWG\Parameter(
+ *          name="id",
+ *          description="Project id",
+ *          required=true,
+ *          type="integer",
+ *          in="path"
+ *      ),
+ *      @SWG\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *      @SWG\Response(response=400, description="Bad request"),
+ *      @SWG\Response(response=404, description="Resource Not Found"),
+ *      security={
+ *         {
+ *              "Bearer":{}
+ *          }
+ *     },
+ * )
+ *
+ * * @SWG\Post(
+ *   path="/sprints",
+ *   tags={"Sprints"},
+ *   summary="Sample",
+ *    @SWG\Parameter(
+ *          name="sprint",
+ *  description="Sprint object that needs to be added to the store",@SWG\Schema(
+ *     @SWG\Property(property="id", type="integer"),
+ *     @SWG\Property(property="title", type="string"),
+ *     @SWG\Property(property="description", type="text"),
+ *     @SWG\Property(property="status", type="available"),
+ *     @SWG\Property(property="user_assigned_id", type="integer"),
+ *     @SWG\Property(property="user_created_id", type="integer"),
+ *     @SWG\Property(property="deadline", type="date"),
+ *     ),
+ *          in="body"
+ *      ),
+ *   @SWG\Response(response=200, description="successful operation"),
+ *       security={
+ *           {
+ *              "Bearer":{}
+ *          }
+ *       }
+ * )
+ *)
+ *
+ *  * @SWG\Put(
+ *   path="/sprints/{id}",
+ *   tags={"Sprints"},
+ *   summary="Update new sprint",
+ *    @SWG\Parameter(
+ *          name="sprint",
+ *  description="Sprint object that needs to be added to the store",@SWG\Schema(
+ *     @SWG\Property(property="id", type="integer"),
+ *     @SWG\Property(property="title", type="string"),
+ *     @SWG\Property(property="description", type="text"),
+ *     @SWG\Property(property="status", type="available"),
+ *     @SWG\Property(property="user_assigned_id", type="integer"),
+ *     @SWG\Property(property="user_created_id", type="integer"),
+ *     @SWG\Property(property="deadline", type="date"),
+ *     ),
+ *          in="body",
+ *      ),
+ *   @SWG\Response(response=200, description="successful operation"),
+ *       security={
+ *           {
+ *              "Bearer":{}
+ *          }
+ *       }
+ * )
+ *)
+ *
+ *  * @SWG\Get(
+ *      path="/pointses/{id}",
+ *      operationId="getIndexById",
+ *      tags={"Sprints"},
+ *      summary="Get story points",
+ *      description="Returns sprints data",
+ *      @SWG\Parameter(
+ *          name="id",
+ *          description="Project id",
+ *          required=true,
+ *          type="integer",
+ *          in="path"
+ *      ),
+ *      @SWG\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *      @SWG\Response(response=400, description="Bad request"),
+ *      @SWG\Response(response=404, description="Resource Not Found"),
+ * )
+ *
+ * *   @SWG\Delete(
+ *      path="/sprints/{id}",
+ *      tags={"Sprints"},
+ *      operationId="ApiV1DeleteSprint",
+ *      summary="Delete Sprint",
+ *      @SWG\Parameter(
+ *          name="id",
+ *          description="Delete Sprint",
+ *          in="path",
+ *          required=true,
+ *          type="string"
+ *      ),
+ *      @SWG\Response(
+ *          response=200,
+ *          description="Success"
+ *      ),
+ *     )
+ * *   @SWG\Definition(
+ *     definition="Sprint",
+ *     type="object",
+ *     description="Sprint",
+ *     properties={
+ *     @SWG\Property(property="id", type="integer",format="int64"),
+ *     @SWG\Property(property="title", type="string"),
+ *     @SWG\Property(property="description", type="text"),
+ *     @SWG\Property(property="status", type="string",enum={"Виконано", "Виконується", "Не виконується"}),
+ *     @SWG\Property(property="user_assigned_id", type="integer",format="int64"),
+ *     @SWG\Property(property="user_created_id", type="integer",format="int64"),
+ *     @SWG\Property(property="deadline", type="date",format="date-time"),
+ *     }
+ * )
+ */
+
 class SprintsController extends APIBaseController
 {
 

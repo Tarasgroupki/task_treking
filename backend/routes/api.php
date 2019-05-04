@@ -13,11 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware(['auth:api','swfix'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('index', 'API\ClientsController')->middleware(['auth:api']);
+Route::resource('index', 'API\ClientsController')->middleware(['auth:api','swfix']);
 Route::resource('tasks', 'API\TasksController')->middleware(['auth:api', 'scope:create-tasks,edit-tasks,delete-tasks']);
 Route::resource('leads', 'API\LeadsController')->middleware(['auth:api', 'scope:create-tasks,edit-tasks,delete-tasks']);
 Route::resource('sprints', 'API\SprintsController')->middleware(['auth:api', 'scope:create-sprints,edit-sprints,delete-sprints']);

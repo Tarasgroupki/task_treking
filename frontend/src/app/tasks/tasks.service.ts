@@ -34,7 +34,9 @@ export class TasksService {
       return this._http.get('http://task-treking/public/api/tasks/'+id+'', {
           headers: new HttpHeaders({'Accept': 'application/json',
               'Authorization': 'Bearer ' + localStorage.getItem('token'),})
-      }).map(result => result);
+      }).map(result => result).catch(() => {
+          return  window.location.href = 'http://localhost:4200/not-found';
+      });
   }
   createTask(arr: object){
       return this._http.post('http://task-treking/public/api/tasks', arr, {
@@ -46,7 +48,9 @@ export class TasksService {
         return this._http.put('http://task-treking/public/api/tasks/'+id+'', arr, {
             headers: new HttpHeaders({'Accept': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem('token'),})
-        }).map(result => result);
+        }).map(result => result).catch((err) => {
+            return  window.location.href = 'http://localhost:4200/not-found';
+        });
     }
     deleteTask(id:number){
       return this._http.delete('http://task-treking/public/api/tasks/'+id+'', {
@@ -74,6 +78,24 @@ export class TasksService {
     }
     updateVote(id: number,arr: object){
         return this._http.put('http://task-treking/public/api/votes/'+id+'', arr, {
+            headers: new HttpHeaders({'Accept': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+        }).map(result => result);
+    }
+    getUserById(id: number) {
+        return this._http.get('http://task-treking/public/api/users/'+id+'', {
+            headers: new HttpHeaders({'Accept': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+        }).map(result => result);
+    }
+    getSprintById(id: number) {
+        return this._http.get('http://task-treking/public/api/sprints/'+id+'', {
+            headers: new HttpHeaders({'Accept': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+        }).map(result => result);
+    }
+    getClientById(id: number) {
+        return this._http.get('http://task-treking/public/api/index/'+id+'', {
             headers: new HttpHeaders({'Accept': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem('token'),})
         }).map(result => result);

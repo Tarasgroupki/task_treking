@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from './users.service';
 import { ActivatedRoute } from "@angular/router";
-//import { Client } from './clients.model';
+import { User } from './users.model';
 
 @Component({
   selector: 'app-users-view',
@@ -10,16 +10,17 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class UsersViewComponent {
     title = 'app';
-   // client: Client = new Client('', '', '', '', '', '', '', '', '', '', '', 1, 1);
+    user: User = new User('', '', '', '', '', '', '');
     //clients: Client[] = [];
-  //  id: number;
+    id: number;
     // _clientsArray: ClientsInterface[];
-    user: object;
+   // user: object;
 
     constructor(private _user: UsersService, private route: ActivatedRoute) {
         this.route.params.subscribe( params => this._user.showUser(params['id']).subscribe(res => {
-          //  this.client = new Client(res['data']['name'], res['data']['email'], res['data']['primary_number'], res['data']['secondary_number'], res['data']['address'], res['data']['zipcode'], res['data']['city'], res['data']['company_name'], res['data']['vat'], res['data']['industry'], res['data']['company_type'], res['data']['user_id'], res['data']['industry_id']);
-           this.user = res['data'];
+            this.user = new User(res['data']['name'], res['data']['email'], res['data']['password'], res['data']['address'], res['data']['work_number'], res['data']['personal_number'], res['data']['image_path']);
+         this.id = params['id'];
+          // this.user = res['data'];
             //  console.log(res);
         }) );
     }

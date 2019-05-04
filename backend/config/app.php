@@ -168,6 +168,8 @@ return [
          * Package Service Providers...
          */
         Spatie\Permission\PermissionServiceProvider::class,
+        L5Swagger\L5SwaggerServiceProvider::class,
+    //    Appointer\Swaggervel\SwaggervelServiceProvider::class,
         /*
          * Application Service Providers...
          */

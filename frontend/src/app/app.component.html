@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div *ngIf="route !== '/login'">
+<div *ngIf="route !== '/login' && route !== '**'">
 <div class="top-menu">
 </div>
 <div class="container">
@@ -89,6 +89,9 @@
 </div>
 <div *ngIf="route === '/login'">
     <app-auth></app-auth>
+</div>
+<div *ngIf="route === '**'">
+    <app-not-found></app-not-found>
 </div>
 <!--<ul *ngFor="let client of res">
   <li>{{client.userId}}}</li>

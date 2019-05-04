@@ -9,6 +9,144 @@ use Illuminate\Support\Facades\DB;
 use Laravel\Passport\Token;
 use App\Http\Controllers\API\APIBaseController as APIBaseController;
 
+/**
+ * Class RulesController
+ * @package App\Http\Controllers\API
+ *
+ *
+ *
+ *  * @SWG\Get(
+ *      path="/rules",
+ *      tags={"Rules"},
+ *      summary="Get list of rules",
+ *      description="Returns list of rules",
+ *      @SWG\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *       @SWG\Response(response=400, description="Bad request"),
+ *       security={
+ *              {"Bearer":{}}
+ *          }
+ *     )
+ *
+ * Returns list of rules
+ *
+ *  * @SWG\Get(
+ *      path="/rules/{id}",
+ *      operationId="getIndexById",
+ *      tags={"Rules"},
+ *      summary="Get rules information",
+ *      description="Returns rules data",
+ *      @SWG\Parameter(
+ *          name="id",
+ *          description="Project id",
+ *          required=true,
+ *          type="integer",
+ *          in="path"
+ *      ),
+ *      @SWG\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *      @SWG\Response(response=400, description="Bad request"),
+ *      @SWG\Response(response=404, description="Resource Not Found"),
+ *      security={
+ *         {
+ *              "Bearer":{}
+ *          }
+ *     },
+ * )
+ *
+ * * @SWG\Get(
+ *      path="/rules/add_permissions/{id}",
+ *      operationId="getIndexById",
+ *      tags={"Rules"},
+ *      summary="Set permissions to roles",
+ *      description="Returns rules data",
+ *      @SWG\Parameter(
+ *          name="id",
+ *          description="Project id",
+ *          required=true,
+ *          type="integer",
+ *          in="path"
+ *      ),
+ *      @SWG\Response(
+ *          response=200,
+ *          description="successful operation"
+ *       ),
+ *      @SWG\Response(response=400, description="Bad request"),
+ *      @SWG\Response(response=404, description="Resource Not Found"),
+ *      security={
+ *         {
+ *              "Bearer":{}
+ *          }
+ *     },
+ * )
+ *
+ * * @SWG\Post(
+ *   path="/rules",
+ *   tags={"Rules"},
+ *   summary="Create new rule",
+ *    @SWG\Parameter(
+ *          name="rule",
+ *  description="Rule object that needs to be added to the store",@SWG\Schema(
+ *     @SWG\Property(property="id", type="integer"),
+ *     @SWG\Property(property="name", type="string"),
+ *     @SWG\Property(property="guard_name", type="string")
+ *     ),
+ *          in="body"
+ *      ),
+ *   @SWG\Response(response=200, description="successful operation"),
+ *       security={
+ *           {
+ *              "Bearer":{}
+ *          }
+ *       }
+ * )
+ *)
+ *
+ *  *@SWG\Put(
+ *   path="/rules/{id}",
+ *   tags={"Rules"},
+ *   summary="Update new rule",
+ *    @SWG\Parameter(
+ *          name="rule",
+ *  description="Rule object that needs to be added to the store",@SWG\Schema(
+ *     @SWG\Property(property="id", type="integer"),
+ *     @SWG\Property(property="name", type="string"),
+ *     @SWG\Property(property="guard_name", type="string")
+ *     ),
+ *          in="body",
+ *      ),
+ *   @SWG\Response(response=200, description="successful operation"),
+ *       security={
+ *           {
+ *              "Bearer":{}
+ *          }
+ *       }
+ * )
+ *)
+ *
+ * *    @SWG\Delete(
+ *      path="/api/rules/{id}",
+ *      tags={"Rules"},
+ *      operationId="ApiV1DeleteRule",
+ *      summary="Delete Rule",
+ *      @SWG\Parameter(
+ *          name="id",
+ *          description="Delete Rule",
+ *          in="path",
+ *          required=true,
+ *          type="string"
+ *      ),
+ *      @SWG\Response(
+ *          response=200,
+ *          description="Success"
+ *      ),
+ *     )
+ */
+
 class RulesController extends APIBaseController
 {
 	 public function __construct()

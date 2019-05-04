@@ -21,12 +21,12 @@
     <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
     <mat-cell *matCellDef="let task"> {{task.status}} </mat-cell>
   </ng-container>
-  <ng-container matColumnDef="user_assigned_id">
-    <mat-header-cell *matHeaderCellDef> Assigned id </mat-header-cell>
-    <mat-cell *matCellDef="let task"> {{task.user_assigned_id}} </mat-cell>
+  <ng-container matColumnDef="sprint_assigned_id">
+    <mat-header-cell *matHeaderCellDef> Assigned Sprint </mat-header-cell>
+    <mat-cell *matCellDef="let task"> {{task.sprint_assigned_id}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="user_created_id">
-    <mat-header-cell *matHeaderCellDef> Created id </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef> Created By </mat-header-cell>
     <mat-cell *matCellDef="let task"> {{task.user_created_id}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="client_id">

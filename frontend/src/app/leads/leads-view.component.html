@@ -2,7 +2,7 @@
   Viewing lead:
 </h1>
 <mat-list role="list">
-  <mat-list-item role="listitem">ID: {{ lead['id'] }}</mat-list-item>
+  <mat-list-item role="listitem">ID: {{ id }}</mat-list-item>
   <mat-list-item role="listitem">Name: {{lead['title']}}</mat-list-item>
   <mat-list-item role="listitem">Email: {{lead['description']}}</mat-list-item>
   <mat-list-item role="listitem">Primary Number: {{lead['status']}}</mat-list-item>
@@ -10,5 +10,5 @@
   <mat-list-item role="listitem">Address: {{lead['client_id']}}</mat-list-item>
   <mat-list-item role="listitem">City: {{lead['user_created_id']}}</mat-list-item>
 </mat-list>
-<a routerLink="/leads/add/{{ lead['id'] }}" routerLinkActive="active"><button mat-button class="edit">{{ 'Редагувати' }}</button></a>
-<a routerLink="/leads/delete/{{ lead['id'] }}" routerLinkActive="active"><button mat-button class="delete">{{ 'Видалити' }}</button></a>
+<a routerLink="/leads/add/{{ id }}" routerLinkActive="active"><button mat-button class="edit">{{ 'Редагувати' }}</button></a>
+<a routerLink="/leads/delete/{{ id }}" routerLinkActive="active"><button mat-button class="delete">{{ 'Видалити' }}</button></a>

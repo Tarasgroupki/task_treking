@@ -3,7 +3,7 @@ import { SprintsService } from './sprints.service';
 import { ActivatedRoute } from "@angular/router";
 import {GraphService} from '../graph/graph.service';
 import { Chart } from 'chart.js';
-//import { Task } from './tasks.model';
+import { Sprint } from './sprints.model';
 
 @Component({
   selector: 'app-sprints-view',
@@ -12,24 +12,24 @@ import { Chart } from 'chart.js';
 })
 export class SprintsViewComponent {
     title = 'app';
-   // task: any = new Task('', '', 1, 1, 1, 1, 1, '');
+    sprint: any = new Sprint('', '', 1, 1, 1, '');
    // tasks: Task[] = [];
   //  id: number;
     // _clientsArray: ClientsInterface[];
-    sprint: object;
+    //sprint: object;
     chart = [];
     id: number;
 
     constructor(private _sprint: SprintsService, private route: ActivatedRoute) {
         this.route.params.subscribe( params => this._sprint.showSprint(params['id']).subscribe(res => {
-           /* this.task = new Task(res['data']['title'], res['data']['description'], res['data']['status'], res['data']['user_assigned_id'], res['data']['user_created_id'], res['data']['client_id'], res['data']['invoice_id'], res['data']['deadline']);*/
-           this.sprint = res['data'];
+            this.sprint = new Sprint(res['data']['title'], res['data']['description'], res['data']['status'], res['data']['lead_assigned_id'], res['data']['user_created_id'], res['data']['deadline']);
+          // this.sprint = res['data'];
            this.id = params['id'];
            this._sprint.dailyForecast(this.id)
                 .subscribe(res => {
 
                     let arr = JSON.parse(res['data'])
-                    console.log(arr);
+                   // console.log(arr);
                     //console.log(JSON.stringify(Object.values(arr.mark)));
                     let temp_max = Object.values(arr.mark)
                     let temp_min = arr.ideal_line

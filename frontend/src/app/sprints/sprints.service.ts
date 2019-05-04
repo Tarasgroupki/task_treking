@@ -34,7 +34,9 @@ export class SprintsService {
       return this._http.get('http://task-treking/public/api/sprints/'+id+'', {
           headers: new HttpHeaders({'Accept': 'application/json',
               'Authorization': 'Bearer ' + localStorage.getItem('token'),})
-      }).map(result => result);
+      }).map(result => result).catch(() => {
+          return  window.location.href = 'http://localhost:4200/not-found';
+      });
   }
   createSprint(arr: object){
       return this._http.post('http://task-treking/public/api/sprints', arr, {
@@ -46,7 +48,9 @@ export class SprintsService {
         return this._http.put('http://task-treking/public/api/sprints/'+id+'', arr, {
             headers: new HttpHeaders({'Accept': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem('token'),})
-        }).map(result => result);
+        }).map(result => result).catch(() => {
+            return  window.location.href = 'http://localhost:4200/not-found';
+        });
     }
     deleteSprint(id:number){
       return this._http.delete('http://task-treking/public/api/sprints/'+id+'', {
@@ -57,6 +61,18 @@ export class SprintsService {
     dailyForecast(id:number) {
         return this._http.get('http://task-treking/public/api/pointses/'+id+'')
             .map(result => result);
+    }
+    getUserById(id: number) {
+        return this._http.get('http://task-treking/public/api/users/'+id+'', {
+            headers: new HttpHeaders({'Accept': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+        }).map(result => result);
+    }
+    getLeadById(id: number) {
+        return this._http.get('http://task-treking/public/api/leads/'+id+'', {
+            headers: new HttpHeaders({'Accept': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+        }).map(result => result);
     }
   /*getClients(): Observable<ClientsInterface[]> {
     return this.http.get(this._clientsURL).map((response: Responce) => {
