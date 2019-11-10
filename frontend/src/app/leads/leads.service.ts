@@ -17,20 +17,17 @@ export class LeadsService {
   }*/
   getUsers(){
       return this._http.get('http://task-treking/public/api/users',{
-          headers: new HttpHeaders({'Accept': 'application/json',
-              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+          headers: new HttpHeaders({'Accept': 'application/json'})
       }).map(result => result);
   }
   getLeads(){
       return this._http.get('http://task-treking/public/api/leads', {
-          headers: new HttpHeaders({'Accept': 'application/json',
-              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+          headers: new HttpHeaders({'Accept': 'application/json'})
       }).map(result => result);
   }
   showLead(id: number){
       return this._http.get('http://task-treking/public/api/leads/'+id+'',{
-          headers: new HttpHeaders({'Accept': 'application/json',
-              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+          headers: new HttpHeaders({'Accept': 'application/json'})
       }).map(result => result).catch(() => {
           return  window.location.href = 'http://localhost:4200/not-found';
       });
@@ -38,37 +35,33 @@ export class LeadsService {
   createLead(parameters: { arr: object }){
       let arr = parameters.arr;
       return this._http.post('http://task-treking/public/api/leads', arr,{
-          headers: new HttpHeaders({'Accept': 'application/json',
-              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+          headers: new HttpHeaders({'Accept': 'application/json'})
       }).map(result => result);
   }
     updateLead(id: number,arr: object){
         return this._http.put('http://task-treking/public/api/leads/'+id+'', arr, {
-            headers: new HttpHeaders({'Accept': 'application/json',
-                'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+            headers: new HttpHeaders({'Accept': 'application/json'})
         }).map(result => result).catch(() => {
             return  window.location.href = 'http://localhost:4200/not-found';
         });;
     }
     deleteLead(id:number){
       return this._http.delete('http://task-treking/public/api/leads/'+id+'',{
-          headers: new HttpHeaders({'Accept': 'application/json',
-              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+          headers: new HttpHeaders({'Accept': 'application/json'})
       }).map(result => result);
     }
     getUserById(id: number) {
         return this._http.get('http://task-treking/public/api/users/'+id+'', {
-            headers: new HttpHeaders({'Accept': 'application/json',
-                'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+            headers: new HttpHeaders({'Accept': 'application/json'})
         }).map(result => result);
     }
-    getClientById(id: number) {
+    /*getClientById(id: number) {
         return this._http.get('http://task-treking/public/api/index/'+id+'', {
             headers: new HttpHeaders({'Accept': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem('token'),})
         }).map(result => result);
     }
-  /*getClients(): Observable<ClientsInterface[]> {
+  getClients(): Observable<ClientsInterface[]> {
     return this.http.get(this._clientsURL).map((response: Responce) => {
       return <ClientsInterface[]>response.json();
     }).catch(this.handleError);

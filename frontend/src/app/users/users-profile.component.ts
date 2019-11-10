@@ -22,7 +22,7 @@ export class UsersProfileComponent implements OnInit {
 
     }
     ngOnInit() {
-        //console.log(this.LogginningData);
+        console.log(this.LogginningData);
         for ( let i = 0; i < this.LogginningData['user']['roles'].length;i++){
             this.roles[i] = this.LogginningData['user']['roles'][i]['name'];
         }

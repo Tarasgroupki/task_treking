@@ -25,30 +25,26 @@ export class ClientsService {
   }
   showClient(id: number){
       return this._http.get('http://task-treking/public/api/index/'+id+'',{
-          headers: new HttpHeaders({'Accept': 'application/json',
-              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+          headers: new HttpHeaders({'Accept': 'application/json'})
       }).map(result => result).catch(() => {
           return  window.location.href = 'http://localhost:4200/not-found';
       });
   }
   createClient(arr: object){
       return this._http.post('http://task-treking/public/api/index', arr, {
-          headers: new HttpHeaders({'Accept': 'application/json',
-              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+          headers: new HttpHeaders({'Accept': 'application/json'})
       }).map(result => result);
   }
     updateClient(id: number,arr: object){
         return this._http.put('http://task-treking/public/api/index/'+id+'', arr, {
-            headers: new HttpHeaders({'Accept': 'application/json',
-                'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+            headers: new HttpHeaders({'Accept': 'application/json'})
         }).map(result => result).catch(() => {
             return  window.location.href = 'http://localhost:4200/not-found';
         });
     }
     deleteClient(id:number){
       return this._http.delete('http://task-treking/public/api/index/'+id+'',{
-          headers: new HttpHeaders({'Accept': 'application/json',
-              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+          headers: new HttpHeaders({'Accept': 'application/json'})
       }).map(result => result);
     }
   /*getClients(): Observable<ClientsInterface[]> {

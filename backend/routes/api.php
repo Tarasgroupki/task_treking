@@ -18,7 +18,7 @@ Route::middleware(['auth:api','swfix'])->get('/user', function (Request $request
 });
 
 Route::resource('index', 'API\ClientsController')->middleware(['auth:api','swfix']);
-Route::resource('tasks', 'API\TasksController')->middleware(['auth:api', 'scope:create-tasks,edit-tasks,delete-tasks']);
+Route::resource('tasks', 'API\TasksController');
 Route::resource('leads', 'API\LeadsController')->middleware(['auth:api', 'scope:create-tasks,edit-tasks,delete-tasks']);
 Route::resource('sprints', 'API\SprintsController')->middleware(['auth:api', 'scope:create-sprints,edit-sprints,delete-sprints']);
 //Route::resource('users', 'API\UsersController')->middleware(['auth:api', 'scope:create-users,edit-users,delete-users']);

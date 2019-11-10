@@ -26,7 +26,7 @@ export class LeadsComponent implements OnInit {
                 else {
                     this.leads[i].status = 'Не виконується';
                 }
-                this._leads.getUserById(this.leads[i].user_created_id).subscribe( res => {
+                /*this._leads.getUserById(this.leads[i].user_created_id).subscribe( res => {
                     this.leads[i].user_created_id = res['data'].name;
                 });
                 this._leads.getUserById(this.leads[i].user_assigned_id).subscribe( res => {
@@ -34,7 +34,7 @@ export class LeadsComponent implements OnInit {
                 });
                 this._leads.getClientById(this.leads[i].client_id).subscribe( res => {
                     this.leads[i].client_id = res['data'].name;
-                });
+                });*/
             }
         });
     }

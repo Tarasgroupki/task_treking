@@ -10,6 +10,8 @@ use Datatables;
 use App\Lead;
 use App\Sprint;
 use App\Task;
+use App\User;
+use App\Client;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\APIBaseController as APIBaseController;
@@ -158,8 +160,18 @@ class LeadsController extends APIBaseController
 {
     public function index()
     {
-        $leads = Lead::all();
-        return $this->sendResponse($leads->toArray(), 'Leads retrieved successfully.');
+        $leads = Lead::all()->toArray();
+
+        foreach ($leads as $key => $value) {
+            $user_assigned = User::find($value["user_assigned_id"]);
+            $user_created = User::find($value["user_created_id"]);
+            $client = Client::find($value["client_id"]);
+            $leads[$key]["user_assigned_id"] = $user_assigned["name"];
+            $leads[$key]["user_created_id"] = $user_created["name"];
+            $leads[$key]["client_id"] = $client["name"];
+        }
+
+        return $this->sendResponse($leads, 'Leads retrieved successfully.');
     }
 
 

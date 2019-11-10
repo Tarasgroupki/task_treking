@@ -4,9 +4,9 @@ import { ActivatedRoute,RouterModule, Router } from "@angular/router";
 
 
 @Component({
-  selector: 'app-roles-delete',
-  templateUrl: './roles.component.html',
-  styleUrls: ['./roles.component.css']
+  selector: 'app-settings-delete',
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.css']
 })
 export class SettingsDeleteComponent {
     title = 'app';

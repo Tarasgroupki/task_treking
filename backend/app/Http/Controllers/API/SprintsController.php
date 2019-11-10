@@ -9,6 +9,8 @@ use Session;
 use Datatables;
 use App\Task;
 use App\Sprint;
+use App\User;
+use App\Lead;
 use App\Vote;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\APIBaseController as APIBaseController;
@@ -259,8 +261,16 @@ class SprintsController extends APIBaseController
      */
     public function index()
     {
-        $leads = Sprint::all();
-        return $this->sendResponse($leads->toArray(), 'Sprints retrieved successfully.');
+        $sprints = Sprint::all()->toArray();
+
+        foreach ($sprints as $key => $value){
+            $user_created = User::find($value["user_created_id"]);
+            $lead = Lead::find($value["lead_assigned_id"]);
+            $sprints[$key]["user_created_id"] = $user_created["name"];
+            $sprints[$key]["lead_assigned_id"] = $lead["title"];
+        }
+
+        return $this->sendResponse($sprints, 'Sprints retrieved successfully.');
     }
 
     /**

@@ -48,6 +48,7 @@ export class SettingsUpdateComponent implements OnInit {
         this.route.params.subscribe( params => this._setting_obj.getOnePermission(params['id']).subscribe(res => {
             this.id = params['id'];
             this.permissions = res['data']['permissions'];
+            console.log(this.permissions);
             if(res['data']['permissions_id']) {
                 this.checked_permissions = res['data']['permissions_id'];
                 console.log(this.checked_permissions);

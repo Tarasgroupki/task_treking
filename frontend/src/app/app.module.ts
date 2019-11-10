@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ApiService } from "./api.service";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -46,12 +46,14 @@ import { SettingsComponent } from './settings/settings.component';
 import { SettingsCreateComponent } from './settings/settings-create.component';
 import { UsersRolesComponent } from './users/users_roles.component';
 import { SettingsUpdateComponent } from './settings/settings-update.component';
+import { SettingsDeleteComponent } from './settings/settings-delete.component';
 import { AuthLogoutsComponent } from './auth/auth-logout.component';
 import { UsersProfileComponent } from './users/users-profile.component';
 import {GraphComponent} from './graph/graph.component';
 import {GraphService} from './graph/graph.service';
 import {SprintsService} from './sprints/sprints.service';
 import {NotFoundComponent} from './not-found/not-found.component';
+import {TokenInterceptorService} from './token-interceptor.service';
 
 
 @NgModule({
@@ -88,6 +90,7 @@ import {NotFoundComponent} from './not-found/not-found.component';
     SettingsComponent,
     SettingsCreateComponent,
     SettingsUpdateComponent,
+    SettingsDeleteComponent,
     AuthLogoutsComponent,
     UsersProfileComponent,
     GraphComponent,
@@ -200,6 +203,10 @@ import {NotFoundComponent} from './not-found/not-found.component';
             component: SettingsUpdateComponent
         },
         {
+            path: 'roles/delete/:id',
+            component: SettingsDeleteComponent
+        },
+        {
             path: 'logout/:id',
             component: AuthLogoutsComponent
         },
@@ -242,7 +249,12 @@ import {NotFoundComponent} from './not-found/not-found.component';
     MaterialModule
   //  AppRoutingModule
   ],
-  providers: [ApiService, ClientsService, TasksService, LeadsService, UsersService, AuthService, SettingsService, GraphService, SprintsService],
+  providers: [ApiService, ClientsService, TasksService, LeadsService, UsersService, AuthService, SettingsService, GraphService, SprintsService,
+      {
+          provide: HTTP_INTERCEPTORS,
+          useClass: TokenInterceptorService,
+          multi: true
+      }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

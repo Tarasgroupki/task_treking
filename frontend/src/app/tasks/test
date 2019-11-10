@@ -1,0 +1,6 @@
+geTasks() {
+
+  id, name, user {
+        id, name, status
+  }
+}

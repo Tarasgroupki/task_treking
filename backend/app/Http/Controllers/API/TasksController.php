@@ -7,6 +7,9 @@ use Validator;
 use Carbon\Carbon;
 use App\Task;
 use App\Vote;
+use App\Sprint;
+use App\Client;
+use App\User;
 use App\Http\Requests;
 use App\Models\Integration;
 use Illuminate\Http\Request;
@@ -181,8 +184,20 @@ class TasksController extends APIBaseController
 {
     public function index()
     {
-        $tasks = Task::all();
-        return $this->sendResponse($tasks->toArray(), 'Tasks retrieved successfully.');
+        $tasks = Task::all()->toArray();
+
+        for($i = 0; $i < count($tasks); $i++) {
+            $sprint = Sprint::find($tasks[$i]["sprint_assigned_id"]);
+            $user_assigned = User::find($tasks[$i]["user_assigned_id"]);
+            $user_created = User::find($tasks[$i]["user_created_id"]);
+            $client = Client::find($tasks[$i]["client_id"]);
+           $tasks[$i]["sprint_assigned_id"] = $sprint["title"];
+           $tasks[$i]["user_assigned_id"] = $user_assigned["name"];
+           $tasks[$i]["user_created_id"] = $user_created["name"];
+           $tasks[$i]["client_id"] = $client["name"];
+        }
+        //print_r($tasks);
+        return $this->sendResponse($tasks, 'Tasks retrieved successfully.');
     }
 
     public function story_points()

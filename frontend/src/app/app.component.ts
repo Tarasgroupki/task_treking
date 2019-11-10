@@ -15,13 +15,14 @@ export class AppComponent implements OnInit {
   route: string;
   constructor(private _router: Router) {
       console.log(this.LogginningData);
-       _router.events.subscribe((url: any) => {
-         this.route = url['url'];
-         if(this.route == '/') {
-             this._router.navigate(['profile']);
-         }
-       //  console.log(this.route);
-       });
+      _router.events.subscribe((url: any) => {
+          if (url.url !== undefined) {
+              this.route = url.url;
+          }
+          if (this.route === '/') {
+              this._router.navigate(['profile']);
+          }
+      });
        //console.log(this._router.url);
   }
 

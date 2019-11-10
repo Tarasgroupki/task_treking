@@ -11,14 +11,12 @@ export class SprintsService {
 
   getUsers(){
       return this._http.get('http://task-treking/public/api/users',{
-          headers: new HttpHeaders({'Accept': 'application/json',
-              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+          headers: new HttpHeaders({'Accept': 'application/json'})
       }).map(result => result);
   }
     getLeads(){
         return this._http.get('http://task-treking/public/api/leads',{
-            headers: new HttpHeaders({'Accept': 'application/json',
-                'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+            headers: new HttpHeaders({'Accept': 'application/json'})
         }).map(result => result);
     }
   getInvoices(){
@@ -26,36 +24,31 @@ export class SprintsService {
   }
   getSprints(){
       return this._http.get('http://task-treking/public/api/sprints', {
-          headers: new HttpHeaders({'Accept': 'application/json',
-              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+          headers: new HttpHeaders({'Accept': 'application/json'})
       }).map(result => result);
   }
   showSprint(id: number){
       return this._http.get('http://task-treking/public/api/sprints/'+id+'', {
-          headers: new HttpHeaders({'Accept': 'application/json',
-              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+          headers: new HttpHeaders({'Accept': 'application/json'})
       }).map(result => result).catch(() => {
           return  window.location.href = 'http://localhost:4200/not-found';
       });
   }
   createSprint(arr: object){
       return this._http.post('http://task-treking/public/api/sprints', arr, {
-          headers: new HttpHeaders({'Accept': 'application/json',
-              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+          headers: new HttpHeaders({'Accept': 'application/json'})
       }).map(result => result);
   }
     updateSprint(id: number,arr: object){
         return this._http.put('http://task-treking/public/api/sprints/'+id+'', arr, {
-            headers: new HttpHeaders({'Accept': 'application/json',
-                'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+            headers: new HttpHeaders({'Accept': 'application/json'})
         }).map(result => result).catch(() => {
             return  window.location.href = 'http://localhost:4200/not-found';
         });
     }
     deleteSprint(id:number){
       return this._http.delete('http://task-treking/public/api/sprints/'+id+'', {
-          headers: new HttpHeaders({'Accept': 'application/json',
-              'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+          headers: new HttpHeaders({'Accept': 'application/json'})
       }).map(result => result);
     }
     dailyForecast(id:number) {
@@ -64,17 +57,16 @@ export class SprintsService {
     }
     getUserById(id: number) {
         return this._http.get('http://task-treking/public/api/users/'+id+'', {
-            headers: new HttpHeaders({'Accept': 'application/json',
-                'Authorization': 'Bearer ' + localStorage.getItem('token'),})
+            headers: new HttpHeaders({'Accept': 'application/json'})
         }).map(result => result);
     }
-    getLeadById(id: number) {
+    /* getLeadById(id: number) {
         return this._http.get('http://task-treking/public/api/leads/'+id+'', {
             headers: new HttpHeaders({'Accept': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem('token'),})
         }).map(result => result);
     }
-  /*getClients(): Observable<ClientsInterface[]> {
+ getClients(): Observable<ClientsInterface[]> {
     return this.http.get(this._clientsURL).map((response: Responce) => {
       return <ClientsInterface[]>response.json();
     }).catch(this.handleError);
