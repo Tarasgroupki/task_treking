@@ -1,4 +1,4 @@
-export class Task{
+export class Task {
     constructor(public title: string,
                 public description: string,
                 public status: number,
@@ -8,6 +8,5 @@ export class Task{
                 public client_id: number,
                // public invoice_id: number,
                 public deadline: string
-    )
-    { }
+    ) { }
 }

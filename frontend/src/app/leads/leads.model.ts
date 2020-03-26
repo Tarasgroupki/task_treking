@@ -6,6 +6,5 @@ export class Lead {
                 public client_id: number,
                 public user_created_id: number,
                 public contact_date: string
-    )
-    { }
+    ) { }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SprintsService } from './sprints.service';
-import { ActivatedRoute } from "@angular/router";
-import {GraphService} from '../graph/graph.service';
+import { ActivatedRoute } from '@angular/router';
 import { Chart } from 'chart.js';
 import { Sprint } from './sprints.model';
 
@@ -13,35 +12,29 @@ import { Sprint } from './sprints.model';
 export class SprintsViewComponent {
     title = 'app';
     sprint: any = new Sprint('', '', 1, 1, 1, '');
-   // tasks: Task[] = [];
-  //  id: number;
-    // _clientsArray: ClientsInterface[];
-    //sprint: object;
     chart = [];
+    square: number;
     id: number;
 
     constructor(private _sprint: SprintsService, private route: ActivatedRoute) {
-        this.route.params.subscribe( params => this._sprint.showSprint(params['id']).subscribe(res => {
-            this.sprint = new Sprint(res['data']['title'], res['data']['description'], res['data']['status'], res['data']['lead_assigned_id'], res['data']['user_created_id'], res['data']['deadline']);
-          // this.sprint = res['data'];
+        this.route.params.subscribe( params => this._sprint.showSprint(params['id']).subscribe(resSprint => {
+            this.sprint = new Sprint(resSprint['data']['title'], resSprint['data']['description'], resSprint['data']['status'], resSprint['data']['lead_assigned_id'], resSprint['data']['user_created_id'], resSprint['data']['deadline']);
            this.id = params['id'];
            this._sprint.dailyForecast(this.id)
                 .subscribe(res => {
 
-                    let arr = JSON.parse(res['data'])
-                   // console.log(arr);
-                    //console.log(JSON.stringify(Object.values(arr.mark)));
-                    let temp_max = Object.values(arr.mark)
-                    let temp_min = arr.ideal_line
-                    let alldates = arr.date
+                    const arr = JSON.parse(res['data']);
+                    let sq = 0;
+                    const tempMax = Object.values(arr.mark);
+                    const tempMin = arr.ideal_line;
+                    const alldates = arr.date;
 
-                    let weatherDates = []
+                    const weatherDates = [];
+
                     alldates.forEach((res) => {
-                        let jsdate = res;
-                        //let jsdate = new Date(res * 1000)
-                       // weatherDates.push(jsdate.toLocaleTimeString('en', { year: 'numeric', month: 'short', day: 'numeric'}))
+                        const jsdate = res;
                        weatherDates.push(jsdate);
-                    })
+                    });
 
                     this.chart = new Chart('canvas', {
                         type: 'line',
@@ -49,12 +42,12 @@ export class SprintsViewComponent {
                             labels: weatherDates,
                             datasets: [
                                 {
-                                    data: temp_max,
+                                    data: tempMax,
                                     borderColor: '#3cba9f',
                                     fill: false
                                 },
                                 {
-                                    data: temp_min,
+                                    data: tempMin,
                                     borderColor: '#ffcc00',
                                     fill: false
                                 },
@@ -73,20 +66,16 @@ export class SprintsViewComponent {
                                 }]
                             }
                         }
-                    })
+                    });
+                    for (let i = 0; i < arr.date.length; i++) {
+                        if (tempMax[i]) {
+                            sq += (tempMax[i] - tempMin[i]) ** 2;
+                        }
+                    }
+                    this.square = Math.sqrt(((1 / tempMax.length) * sq));
+                });
 
-                })
-             // console.log(this.id);
         }) );
     }
-
-  //  ngOnInit() {
-
-   // }
-    /*ngOnInit() {
-        this._clients.getClients().subscribe(res => {
-            this.clients = res;
-        });
-    }*/
 
 }

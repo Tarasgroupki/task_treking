@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { TasksService } from './tasks.service';
-import {Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tasks',
@@ -17,29 +17,17 @@ export class TasksComponent implements OnInit, OnDestroy {
     constructor(private _tasks: TasksService) {}
 
     ngOnInit() {
-       this.sub =  this._tasks.getTasks().subscribe(res => {
-            this.tasks = res['data'];
-            console.log(res);
-            for(let i in this.tasks){
-              if(this.tasks[i].status == 2) {
+       this.sub =  this._tasks.getTasks().subscribe(resTasks => {
+            this.tasks = resTasks['data'];
+
+            for (const i of Object.keys(this.tasks)) {
+              if (this.tasks[i].status === 2) {
                  this.tasks[i].status = 'Виконано';
-              }
-              else if(this.tasks[i].status == 1) {
+              } else if (this.tasks[i].status === 1) {
                   this.tasks[i].status = 'Виконується';
-              }
-              else {
+              } else {
                   this.tasks[i].status = 'Не виконується';
               }
-
-             /* this._tasks.getUserById(this.tasks[i].user_created_id).subscribe( res => {
-                 this.tasks[i].user_created_id = res['data'].name;
-              });
-              this._tasks.getSprintById(this.tasks[i].sprint_assigned_id).subscribe( res => {
-                  this.tasks[i].sprint_assigned_id = res['data'].title;
-              });
-                this._tasks.getClientById(this.tasks[i].client_id).subscribe( res => {
-                    this.tasks[i].client_id = res['data'].name;
-                });*/
             }
         });
     }

@@ -14,27 +14,16 @@ export class LeadsComponent implements OnInit {
     constructor(private _leads: LeadsService) {}
 
     ngOnInit() {
-        this._leads.getLeads().subscribe(res => {
-            this.leads = res['data'];
-            for(let i in this.leads){
-                if(this.leads[i].status == 2) {
+        this._leads.getLeads().subscribe(resLeads => {
+            this.leads = resLeads['data'];
+            for (const i of Object.keys(this.leads)) {
+                if (this.leads[i].status === 2) {
                     this.leads[i].status = 'Виконано';
-                }
-                else if(this.leads[i].status == 1) {
+                } else if (this.leads[i].status === 1) {
                     this.leads[i].status = 'Виконується';
-                }
-                else {
+                } else {
                     this.leads[i].status = 'Не виконується';
                 }
-                /*this._leads.getUserById(this.leads[i].user_created_id).subscribe( res => {
-                    this.leads[i].user_created_id = res['data'].name;
-                });
-                this._leads.getUserById(this.leads[i].user_assigned_id).subscribe( res => {
-                    this.leads[i].user_assigned_id = res['data'].name;
-                });
-                this._leads.getClientById(this.leads[i].client_id).subscribe( res => {
-                    this.leads[i].client_id = res['data'].name;
-                });*/
             }
         });
     }

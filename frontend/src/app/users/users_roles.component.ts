@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from './users.service';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-usersroles',
@@ -20,37 +20,35 @@ export class UsersRolesComponent implements OnInit {
     constructor(private _users: UsersService, private route: ActivatedRoute) {}
 
     ngOnInit() {
-        this.route.params.subscribe( params => this._users.getRoles(params['id']).subscribe(res => {
+        this.route.params.subscribe( params => this._users.getRoles(params['id']).subscribe(resRoles => {
             this.id = params['id'];
-            this.roles = res['data']['roles'];
-            if(res['data']['roles_id']){
-                this.checked_roles = res['data']['roles_id'];
+            this.roles = resRoles['data']['roles'];
+            if (resRoles['data']['roles_id']) {
+                this.checked_roles = resRoles['data']['roles_id'];
             }
             console.log(this.checked_roles);
         }));
     }
     onCkeckboxSelected(value) {
-        if(this.selected_checkbox.indexOf( value ) != -1) {
+        if (this.selected_checkbox.indexOf( value ) !== -1) {
             this.selected_checkbox.splice(this.selected_checkbox.indexOf( value ), 1);
-        }
-        else {
+        } else {
             this.selected_checkbox.push(value);
         }
         console.log(this.selected_checkbox);
     }
     onCkeckboxUnSelected(value) {
-        if(this.unselected_checkbox.indexOf( value ) != -1) {
+        if (this.unselected_checkbox.indexOf( value ) !== -1) {
             this.unselected_checkbox.splice(this.unselected_checkbox.indexOf( value ), 1);
-        }
-        else {
+        } else {
             this.unselected_checkbox.push(value);
         }
         console.log(this.unselected_checkbox);
     }
     assignRole() {
         this.checkboxes.push(this.selected_checkbox, this.unselected_checkbox);
-        this._users.AssignRoles(this.id, this.checkboxes).subscribe(res => {
-            console.log(res);
+        this._users.AssignRoles(this.id, this.checkboxes).subscribe(resAssignRoles => {
+            console.log(resAssignRoles);
         });
     }
 

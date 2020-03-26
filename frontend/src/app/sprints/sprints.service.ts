@@ -1,88 +1,63 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class SprintsService {
 
-    //const API_URL = environment.apiUrl;
+  constructor(private _http: HttpClient, private _router: Router) { }
 
-  constructor(private _http: HttpClient) { }
-
-  getUsers(){
-      return this._http.get('http://task-treking/public/api/users',{
+  getUsers() {
+      return this._http.get('http://localhost:8040/api/users', {
           headers: new HttpHeaders({'Accept': 'application/json'})
       }).map(result => result);
   }
-    getLeads(){
-        return this._http.get('http://task-treking/public/api/leads',{
-            headers: new HttpHeaders({'Accept': 'application/json'})
-        }).map(result => result);
+  getLeads() {
+       return this._http.get('http://localhost:8040/api/leads', {
+          headers: new HttpHeaders({'Accept': 'application/json'})
+       }).map(result => result);
     }
-  getInvoices(){
-      return this._http.get('http://task-treking/public/api/invoices').map(result => result);
+  getInvoices() {
+      return this._http.get('http://localhost:8040/api/invoices').map(result => result);
   }
-  getSprints(){
-      return this._http.get('http://task-treking/public/api/sprints', {
+  getSprints() {
+      return this._http.get('http://localhost:8040/api/sprints', {
           headers: new HttpHeaders({'Accept': 'application/json'})
       }).map(result => result);
   }
-  showSprint(id: number){
-      return this._http.get('http://task-treking/public/api/sprints/'+id+'', {
+  showSprint(id: number) {
+      return this._http.get('http://localhost:8040/api/sprints/' + id + '', {
           headers: new HttpHeaders({'Accept': 'application/json'})
       }).map(result => result).catch(() => {
-          return  window.location.href = 'http://localhost:4200/not-found';
+        return this._router.navigate(['not-found']);
       });
   }
-  createSprint(arr: object){
-      return this._http.post('http://task-treking/public/api/sprints', arr, {
+  createSprint(arr: object) {
+      return this._http.post('http://localhost:8040/api/sprints', arr, {
           headers: new HttpHeaders({'Accept': 'application/json'})
       }).map(result => result);
   }
-    updateSprint(id: number,arr: object){
-        return this._http.put('http://task-treking/public/api/sprints/'+id+'', arr, {
+    updateSprint(id: number, arr: object) {
+        return this._http.put('http://localhost:8040/api/sprints/' + id + '', arr, {
             headers: new HttpHeaders({'Accept': 'application/json'})
         }).map(result => result).catch(() => {
-            return  window.location.href = 'http://localhost:4200/not-found';
+          return this._router.navigate(['not-found']);
         });
     }
-    deleteSprint(id:number){
-      return this._http.delete('http://task-treking/public/api/sprints/'+id+'', {
+    deleteSprint(id: number) {
+      return this._http.delete('http://localhost:8040/api/sprints/' + id + '', {
           headers: new HttpHeaders({'Accept': 'application/json'})
       }).map(result => result);
     }
-    dailyForecast(id:number) {
-        return this._http.get('http://task-treking/public/api/pointses/'+id+'')
+    dailyForecast(id: number) {
+        return this._http.get('http://localhost:8040/api/pointses/' + id + '')
             .map(result => result);
     }
     getUserById(id: number) {
-        return this._http.get('http://task-treking/public/api/users/'+id+'', {
+        return this._http.get('http://localhost:8040/api/users/' + id + '', {
             headers: new HttpHeaders({'Accept': 'application/json'})
         }).map(result => result);
     }
-    /* getLeadById(id: number) {
-        return this._http.get('http://task-treking/public/api/leads/'+id+'', {
-            headers: new HttpHeaders({'Accept': 'application/json',
-                'Authorization': 'Bearer ' + localStorage.getItem('token'),})
-        }).map(result => result);
-    }
- getClients(): Observable<ClientsInterface[]> {
-    return this.http.get(this._clientsURL).map((response: Responce) => {
-      return <ClientsInterface[]>response.json();
-    }).catch(this.handleError);
-  }
-
-  private handleError(error: Response) {
-      return Observable.throw(error.statusText);
-  }
-    public getAllClients(): Observable<ClientsInterface[]> {
-        return this.http
-            .get(this.API_URL)
-            .map(response => {
-                const todos = response.json();
-                return todos.map((todo) => new ClientsInterface(todo));
-            })
-            .catch(this.handleError);
-    }*/
 
 }

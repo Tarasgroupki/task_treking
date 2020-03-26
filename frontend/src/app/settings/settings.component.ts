@@ -14,9 +14,8 @@ export class SettingsComponent implements OnInit {
     constructor(private _roles: SettingsService) {}
 
     ngOnInit() {
-        this._roles.getRoles().subscribe(res => {
-            this.roles = res['data'];
-            console.log(res);
+        this._roles.getRoles().subscribe(resRoles => {
+            this.roles = resRoles['data'];
         });
     }
 

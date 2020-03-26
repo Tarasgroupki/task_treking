@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LeadsService } from './leads.service';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute } from '@angular/router';
 import { Lead } from './leads.model';
 
 @Component({
@@ -11,29 +11,13 @@ import { Lead } from './leads.model';
 export class LeadsViewComponent {
     title = 'app';
     lead: any = new Lead('', '', 1, 1, 1, 1, '');
-   // leads: Lead[] = [];
     id: number;
-    // _clientsArray: ClientsInterface[];
-    //lead: object;
 
     constructor(private _lead: LeadsService, private route: ActivatedRoute) {
-        this.route.params.subscribe( params => this._lead.showLead(params['id']).subscribe(res => {
-            this.lead = new Lead(res['data']['title'], res['data']['description'], res['data']['status'], res['data']['user_assigned_id'], res['data']['client_id'], res['data']['user_created_id'], res['data']['contact_date']);
-            //this.lead = res['data'];
+        this.route.params.subscribe( params => this._lead.showLead(params['id']).subscribe(resLead => {
+            this.lead = new Lead(resLead['data']['title'], resLead['data']['description'], resLead['data']['status'], resLead['data']['user_assigned_id'], resLead['data']['client_id'], resLead['data']['user_created_id'], resLead['data']['contact_date']);
             this.id = params['id'];
-            //  console.log(res);
         }) );
     }
-
-  /*  ngOnInit() {
-        this._client.showClient().subscribe(res => {
-            this.client = res;
-          //  console.log(res);
-        });*/
-    /*ngOnInit() {
-        this._clients.getClients().subscribe(res => {
-            this.clients = res;
-        });
-    }*/
 
 }

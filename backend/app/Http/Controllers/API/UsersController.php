@@ -243,8 +243,8 @@ class UsersController extends APIBaseController
 
         }
         else{
-           //$error['message'] = 'Неправильний логін, або пароль!';
-            return $this->sendResponse(NULL, 'Authentication error!');
+            
+            return $this->sendError(NULL, 'Authentication error!');
 
         }
     }
