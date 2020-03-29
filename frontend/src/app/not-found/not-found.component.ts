@@ -8,13 +8,13 @@ import { Router } from '@angular/router';
 })
 export class NotFoundComponent implements OnInit {
 
-  constructor(private _router: Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   navigate() {
-    return this._router.navigate(['profile']);
+    return this.router.navigate(['profile']);
   }
 
 }

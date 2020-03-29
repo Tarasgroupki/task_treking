@@ -14,10 +14,10 @@ export class TasksComponent implements OnInit, OnDestroy {
 
     public sub: Subscription;
 
-    constructor(private _tasks: TasksService) {}
+    constructor(private tasksService: TasksService) {}
 
     ngOnInit() {
-       this.sub =  this._tasks.getTasks().subscribe(resTasks => {
+       this.sub =  this.tasksService.getTasks().subscribe(resTasks => {
             this.tasks = resTasks['data'];
 
             for (const i of Object.keys(this.tasks)) {

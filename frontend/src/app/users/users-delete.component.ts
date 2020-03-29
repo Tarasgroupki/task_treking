@@ -12,10 +12,10 @@ export class UsersDeleteComponent {
     title = 'app';
     user: object;
 
-    constructor(private _user: UsersService, private route: ActivatedRoute, private _router: Router) {
-        this.route.params.subscribe( params => this._user.deleteUser(params['id']).subscribe(res => {
+    constructor(private usersService: UsersService, private route: ActivatedRoute, private router: Router) {
+        this.route.params.subscribe( params => this.usersService.deleteUser(params['id']).subscribe(res => {
             this.user = res;
-            this._router.navigate(['users']);
+            this.router.navigate(['users']);
         }) );
     }
 

@@ -13,13 +13,13 @@
 <div class="form-group">
   <mat-form-field>
     <mat-select id="mark" [(ngModel)]="selectedValue" (ngModelChange)="onSelectedChange($event)" placeholder="Vote" #vote="ngModel">
-      <mat-option *ngFor="let votes of votes_arr" [value]="votes.value">
+      <mat-option *ngFor="let votes of votesArr" [value]="votes.value">
         {{ votes.value }}
       </mat-option>
     </mat-select>
   </mat-form-field>
 </div>
 <div class="form-group">
-  <button *ngIf="users.indexOf(user_id) != -1" mat-button (click)="updateVote()">Оцінити</button>
-  <button *ngIf="users.indexOf(user_id) == -1" mat-button (click)="addVote()">Оцінити(створити)</button>
+  <button *ngIf="users.indexOf(userId) != -1" mat-button (click)="updateVote()">Оцінити</button>
+  <button *ngIf="users.indexOf(userId) == -1" mat-button (click)="addVote()">Оцінити(створити)</button>
 </div>

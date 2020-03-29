@@ -11,43 +11,43 @@ export class UsersRolesComponent implements OnInit {
     title = 'app';
     id: number;
     roles: object;
-    checked_roles: object;
-    selected_checkbox = [];
-    unselected_checkbox = [];
+    checkedRoles: object;
+    selectedCheckbox = [];
+    unselectedCheckbox = [];
     checkboxes = [];
   //  displayedColumns = ['id', 'name', 'email', 'password', 'address', 'work_number', 'personal_number', 'image_path'];
 
-    constructor(private _users: UsersService, private route: ActivatedRoute) {}
+    constructor(private usersService: UsersService, private route: ActivatedRoute) {}
 
     ngOnInit() {
-        this.route.params.subscribe( params => this._users.getRoles(params['id']).subscribe(resRoles => {
+        this.route.params.subscribe( params => this.usersService.getRoles(params['id']).subscribe(resRoles => {
             this.id = params['id'];
             this.roles = resRoles['data']['roles'];
             if (resRoles['data']['roles_id']) {
-                this.checked_roles = resRoles['data']['roles_id'];
+                this.checkedRoles = resRoles['data']['roles_id'];
             }
-            console.log(this.checked_roles);
+            console.log(this.checkedRoles);
         }));
     }
     onCkeckboxSelected(value) {
-        if (this.selected_checkbox.indexOf( value ) !== -1) {
-            this.selected_checkbox.splice(this.selected_checkbox.indexOf( value ), 1);
+        if (this.selectedCheckbox.indexOf( value ) !== -1) {
+            this.selectedCheckbox.splice(this.selectedCheckbox.indexOf( value ), 1);
         } else {
-            this.selected_checkbox.push(value);
+            this.selectedCheckbox.push(value);
         }
-        console.log(this.selected_checkbox);
+        console.log(this.selectedCheckbox);
     }
     onCkeckboxUnSelected(value) {
-        if (this.unselected_checkbox.indexOf( value ) !== -1) {
-            this.unselected_checkbox.splice(this.unselected_checkbox.indexOf( value ), 1);
+        if (this.unselectedCheckbox.indexOf( value ) !== -1) {
+            this.unselectedCheckbox.splice(this.unselectedCheckbox.indexOf( value ), 1);
         } else {
-            this.unselected_checkbox.push(value);
+            this.unselectedCheckbox.push(value);
         }
-        console.log(this.unselected_checkbox);
+        console.log(this.unselectedCheckbox);
     }
     assignRole() {
-        this.checkboxes.push(this.selected_checkbox, this.unselected_checkbox);
-        this._users.AssignRoles(this.id, this.checkboxes).subscribe(resAssignRoles => {
+        this.checkboxes.push(this.selectedCheckbox, this.unselectedCheckbox);
+        this.usersService.AssignRoles(this.id, this.checkboxes).subscribe(resAssignRoles => {
             console.log(resAssignRoles);
         });
     }

@@ -11,10 +11,10 @@ export class SprintsComponent implements OnInit {
     sprints: object;
     displayedColumns = ['id', 'title', 'description', 'status', 'lead_assigned_id', 'user_created_id', 'deadline', 'created_at'];
 
-    constructor(private _sprints: SprintsService) {}
+    constructor(private sprintsService: SprintsService) {}
 
     ngOnInit() {
-        this._sprints.getSprints().subscribe(resSprints => {
+        this.sprintsService.getSprints().subscribe(resSprints => {
             this.sprints = resSprints['data'];
             for (const i of Object.keys(this.sprints)) {
                 if (this.sprints[i].status === 2) {

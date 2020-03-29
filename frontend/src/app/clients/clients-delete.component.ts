@@ -12,8 +12,8 @@ export class ClientsDeleteComponent {
     title = 'app';
     client: object;
 
-    constructor(private _client: ClientsService, private route: ActivatedRoute, private router: Router) {
-        this.route.params.subscribe( params => this._client.deleteClient(params['id']).subscribe(resClient => {
+    constructor(private clientsService: ClientsService, private route: ActivatedRoute, private router: Router) {
+        this.route.params.subscribe( params => this.clientsService.deleteClient(params['id']).subscribe(resClient => {
             this.client = resClient;
             this.router.navigate(['clients']);
         }) );

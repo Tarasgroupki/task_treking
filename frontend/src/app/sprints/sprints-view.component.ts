@@ -16,11 +16,11 @@ export class SprintsViewComponent {
     square: number;
     id: number;
 
-    constructor(private _sprint: SprintsService, private route: ActivatedRoute) {
-        this.route.params.subscribe( params => this._sprint.showSprint(params['id']).subscribe(resSprint => {
+    constructor(private sprintsService: SprintsService, private route: ActivatedRoute) {
+        this.route.params.subscribe( params => this.sprintsService.showSprint(params['id']).subscribe(resSprint => {
             this.sprint = new Sprint(resSprint['data']['title'], resSprint['data']['description'], resSprint['data']['status'], resSprint['data']['lead_assigned_id'], resSprint['data']['user_created_id'], resSprint['data']['deadline']);
            this.id = params['id'];
-           this._sprint.dailyForecast(this.id)
+           this.sprintsService.dailyForecast(this.id)
                 .subscribe(res => {
 
                     const arr = JSON.parse(res['data']);

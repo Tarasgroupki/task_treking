@@ -22,25 +22,25 @@ export class SprintsCreateComponent implements OnInit {
     lead: any = new Leads(0, '');
     leads = [];
 
-    constructor(public _sprint_obj: SprintsService) {
+    constructor(public sprintsService: SprintsService) {
 
     }
 
     addSprint() {
         this.sprints.push(new Sprint(this.sprint.title, this.sprint.description, this.sprint.status, this.sprint.lead_assigned_id, this.sprint.user_created_id, this.sprint.deadline));
-        this._sprint_obj.createSprint(this.sprints).subscribe(resSprint => {
+        this.sprintsService.createSprint(this.sprints).subscribe(resSprint => {
         this.sprint = resSprint;
         this.sprints.length = 0;
     });
     }
     ngOnInit() {
-        this._sprint_obj.getUsers().subscribe(resUsers => {
+        this.sprintsService.getUsers().subscribe(resUsers => {
             for (let i = 0; i < resUsers['data'].length; i++) {
                 this.user = new Users(resUsers['data'][i].id, resUsers['data'][i].name);
                 this.users.push(this.user);
             }
         });
-        this._sprint_obj.getLeads().subscribe(resLeads => {
+        this.sprintsService.getLeads().subscribe(resLeads => {
             for (let i = 0; i < resLeads['data'].length; i++) {
                 this.lead = new Leads(resLeads['data'][i].id, resLeads['data'][i].title);
                 this.leads.push(this.lead);

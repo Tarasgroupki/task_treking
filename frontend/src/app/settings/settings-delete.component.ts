@@ -12,10 +12,10 @@ export class SettingsDeleteComponent {
     title = 'app';
     role: object;
 
-    constructor(private _role: SettingsService, private route: ActivatedRoute, private _router: Router) {
-        this.route.params.subscribe( params => this._role.deleteRole(params['id']).subscribe(resRole => {
+    constructor(private settingsService: SettingsService, private route: ActivatedRoute, private router: Router) {
+        this.route.params.subscribe( params => this.settingsService.deleteRole(params['id']).subscribe(resRole => {
             this.role = resRole;
-            this._router.navigate(['roles']);
+            this.router.navigate(['roles']);
         }) );
     }
 

@@ -11,10 +11,10 @@ export class LeadsComponent implements OnInit {
     leads: object;
     displayedColumns = ['id', 'title', 'description', 'status', 'user_assigned_id', 'client_id', 'user_created_id', 'contact_date', 'created_at'];
 
-    constructor(private _leads: LeadsService) {}
+    constructor(private leadsService: LeadsService) {}
 
     ngOnInit() {
-        this._leads.getLeads().subscribe(resLeads => {
+        this.leadsService.getLeads().subscribe(resLeads => {
             this.leads = resLeads['data'];
             for (const i of Object.keys(this.leads)) {
                 if (this.leads[i].status === 2) {

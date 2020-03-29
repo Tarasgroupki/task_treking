@@ -11,10 +11,10 @@ export class UsersComponent implements OnInit {
     users: object;
     displayedColumns = ['id', 'name', 'email', 'password', 'address', 'work_number', 'personal_number', 'image_path'];
 
-    constructor(private _users: UsersService) {}
+    constructor(private usersService: UsersService) {}
 
     ngOnInit() {
-        this._users.getUsers().subscribe(resUsers => {
+        this.usersService.getUsers().subscribe(resUsers => {
             this.users = resUsers['data'];
         });
     }

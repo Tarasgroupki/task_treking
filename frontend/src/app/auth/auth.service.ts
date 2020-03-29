@@ -10,16 +10,16 @@ export class AuthService {
   permissions = new BehaviorSubject(null);
   errMessage = new BehaviorSubject(null);
 
-  constructor(private _http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
     getAuth(arr: object) {
-        return this._http.post('http://localhost:8040/api/auth', arr, {
+        return this.http.post('http://localhost:8040/api/auth', arr, {
             headers: new HttpHeaders({'Accept': 'application/json',
             })
         }).map(result => result);
     }
     logoutAuth(id: number) {
-       return this._http.get('http://localhost:8040/api/users/logout/' + id + '').map(result => result);
+       return this.http.get('http://localhost:8040/api/users/logout/' + id + '').map(result => result);
     }
 
 }

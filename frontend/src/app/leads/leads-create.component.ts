@@ -20,20 +20,20 @@ export class LeadsCreateComponent implements OnInit {
     ];
     loggedIn: object;
 
-    constructor(public _lead_obj: LeadsService) {
+    constructor(public leadsService: LeadsService) {
 
     }
 
     addLead() {
         this.leads.push(new Lead(this.lead.title, this.lead.description, this.lead.status, this.lead.user_assigned_id, this.lead.client_id, this.lead.user_created_id, this.lead.contact_date));
         this.loggedIn = JSON.parse(localStorage.getItem('LoggedIn'));
-        this._lead_obj.createLead({arr: this.leads}).subscribe(res => {
+        this.leadsService.createLead({arr: this.leads}).subscribe(res => {
         this.lead = res;
         this.leads.length = 0;
     });
     }
     ngOnInit() {
-        this._lead_obj.getUsers().subscribe(resUsers => {
+        this.leadsService.getUsers().subscribe(resUsers => {
             for (let i = 0; i < resUsers['data'].length; i++) {
                 this.user = new Users(resUsers['data'][i].id, resUsers['data'][i].name);
                 this.users.push(this.user);

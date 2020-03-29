@@ -12,10 +12,10 @@ export class TasksDeleteComponent {
     title = 'app';
     task: object;
 
-    constructor(private _task: TasksService, private route: ActivatedRoute, private _router: Router) {
-        this.route.params.subscribe( params => this._task.deleteTask(params['id']).subscribe(resTask => {
+    constructor(private tasksService: TasksService, private route: ActivatedRoute, private router: Router) {
+        this.route.params.subscribe( params => this.tasksService.deleteTask(params['id']).subscribe(resTask => {
             this.task = resTask;
-            this._router.navigate(['tasks']);
+            this.router.navigate(['tasks']);
         }) );
     }
 

@@ -12,10 +12,10 @@ export class LeadsDeleteComponent {
     title = 'app';
     lead: object;
 
-    constructor(private _lead: LeadsService, private route: ActivatedRoute, private _router: Router) {
-        this.route.params.subscribe( params => this._lead.deleteLead(params['id']).subscribe(res => {
-            this.lead = res;
-            this._router.navigate(['leads']);
+    constructor(private leadsService: LeadsService, private route: ActivatedRoute, private router: Router) {
+        this.route.params.subscribe( params => this.leadsService.deleteLead(params['id']).subscribe(resLead => {
+            this.lead = resLead;
+            this.router.navigate(['leads']);
         }) );
     }
 

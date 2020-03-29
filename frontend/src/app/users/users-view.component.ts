@@ -13,8 +13,8 @@ export class UsersViewComponent {
     user: User = new User('', '', '', '', '', '', '');
     id: number;
 
-    constructor(private _user: UsersService, private route: ActivatedRoute) {
-        this.route.params.subscribe( params => this._user.showUser(params['id']).subscribe(resUser => {
+    constructor(private usersService: UsersService, private route: ActivatedRoute) {
+        this.route.params.subscribe( params => this.usersService.showUser(params['id']).subscribe(resUser => {
             this.user = new User(resUser['data']['name'], resUser['data']['email'], resUser['data']['password'], resUser['data']['address'], resUser['data']['work_number'], resUser['data']['personal_number'], resUser['data']['image_path']);
          this.id = params['id'];
         }) );

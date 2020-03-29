@@ -24,23 +24,23 @@ export class TasksUpdateComponent implements OnInit {
     users = [];
     sprint: any = new Users(0, '');
     sprints = [];
-   selected: number;
+    selected: number;
 
-    constructor(public _task_obj: TasksService, private route: ActivatedRoute) {
+    constructor(public tasksService: TasksService, private route: ActivatedRoute) {
 
     }
     ngOnInit() {
-    this.route.params.subscribe( params => this._task_obj.showTask(params['id']).subscribe(resTask => {
+    this.route.params.subscribe( params => this.tasksService.showTask(params['id']).subscribe(resTask => {
     this.date = new Date(resTask['data']['deadline']);
     this.task = new Task(resTask['data']['title'], resTask['data']['description'], resTask['data']['status'], resTask['data']['user_assigned_id'], resTask['data']['sprint_assigned_id'], resTask['data']['user_created_id'], resTask['data']['client_id'], this.date);
     this.id = params['id'];
-     this._task_obj.getUsers().subscribe(resUsers => {
+     this.tasksService.getUsers().subscribe(resUsers => {
          for (let i = 0; i < resUsers['data'].length; i++) {
              this.user = new Users(resUsers['data'][i].id, resUsers['data'][i].name);
              this.users.push(this.user);
          }
      });
-     this._task_obj.getSprints().subscribe(resSprints => {
+     this.tasksService.getSprints().subscribe(resSprints => {
          for (let i = 0; i < resSprints['data'].length; i++) {
              this.sprint = new Sprints(resSprints['data'][i].id, resSprints['data'][i].title);
              this.sprints.push(this.sprint);
@@ -52,7 +52,7 @@ export class TasksUpdateComponent implements OnInit {
 
     updateTask() {
         this.tasks.push(new Task(this.task.title, this.task.description, this.task.status, this.task.user_assigned_id, this.task.sprint_assigned_id, this.task.user_created_id, this.task.client_id, this.task.deadline));
-        this._task_obj.updateTask(this.id, this.tasks).subscribe(() => {
+        this.tasksService.updateTask(this.id, this.tasks).subscribe(() => {
             this.tasks.length = 0;
     });
 

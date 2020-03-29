@@ -14,20 +14,20 @@ export class ClientsCreateComponent implements OnInit {
     user: any = new Users(0, '');
     users = [];
 
-    constructor(public _client_obj: ClientsService) {
+    constructor(public clientsService: ClientsService) {
 
     }
 
     addClient() {
         this.clients.push(new Client(this.client.name, this.client.email, this.client.primary_number, this.client.secondary_number, this.client.address, this.client.zipcode, this.client.city, this.client.company_name, this.client.vat, this.client.company_type, this.client.user_id, this.client.industry_id));
 
-        this._client_obj.createClient(this.clients).subscribe(resClient => {
+        this.clientsService.createClient(this.clients).subscribe(resClient => {
         this.client = resClient;
         this.clients.length = 0;
     });
     }
     ngOnInit() {
-        this._client_obj.getUsers().subscribe(resUsers => {
+        this.clientsService.getUsers().subscribe(resUsers => {
             for (let i = 0; i < resUsers['data'].length; i++) {
                 this.user = new Users(resUsers['data'][i].id, resUsers['data'][i].name);
                 this.users.push(this.user);
