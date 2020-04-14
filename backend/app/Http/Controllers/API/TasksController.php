@@ -196,7 +196,7 @@ class TasksController extends APIBaseController
            $tasks[$i]["user_created_id"] = $user_created["name"];
            $tasks[$i]["client_id"] = $client["name"];
         }
-        //print_r($tasks);
+
         return $this->sendResponse($tasks, 'Tasks retrieved successfully.');
     }
 
@@ -213,18 +213,6 @@ class TasksController extends APIBaseController
                 $marks['date'][$key] = $time_first;
                 $min = null;
                 foreach ($res as $key1 => $value1) {
-                   /* if ($value1 < $min) {
-                        $min = $value1;
-                    }
-                    if ($key1 == 0) {
-                        $marks['list'][$key1] = 1;
-                    } else {
-                        $marks['list'][$key1] = $marks['list'][$key1 - 1] + 1;
-                    }
-                    // echo '<hr />'.$min. '<hr />';
-                    if ($value1 == $min) {
-                        unset($res[$key1]);
-                    }*/
                    if($value1 < 3) {
                        $marks['list'][$key1] = 1;
                    }
@@ -249,10 +237,7 @@ class TasksController extends APIBaseController
                 }
             }
         }
-       // $marks['dt'] = array('','1485768552');
-      // print_r($marks);
-       // $marks = json_encode($marks);
-       // $marks['date'] = [1485717216, 1485745061, 1485768552];
+
         return $this->sendResponse(json_encode($marks), 'Tasks retrieved successfully.');
     }
 
@@ -375,8 +360,6 @@ class TasksController extends APIBaseController
             $users[0] = 0;
         }
 
-       // print_r($votes);
-
         return $this->sendResponse(json_encode($users), 'Users retrieved successfully.');
     }
 
@@ -386,15 +369,11 @@ class TasksController extends APIBaseController
 
          $vote = Vote::where('task_assigned_id', $str_ids[1])->where('user_added_id', $str_ids[0])->get();
 
-        // print_r($id);
-
           if (is_null($vote)) {
             return $this->sendError('Task not found.');
          }
 
-         //print_r($vote);
-
-        return $this->sendResponse(json_encode($vote[0]), 'Users retrieved successfully.');
+         return $this->sendResponse(json_encode($vote[0]), 'Users retrieved successfully.');
     }
     /**
      * Update the specified resource in storage.

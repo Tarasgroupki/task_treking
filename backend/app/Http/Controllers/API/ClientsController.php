@@ -176,52 +176,23 @@ use App\Repositories\Setting\SettingRepositoryContract;
 class ClientsController extends APIBaseController
 {
 
-   // protected $users;
-//    protected $clients;
- //   protected $settings;
-
-    public function __construct(
-    //    UserRepositoryContract $users,
-  //      ClientRepositoryContract $clients,
-  //      SettingRepositoryContract $settings
-    )
-    {
-     //   $this->users = $users;
-     //   $this->clients = $clients;
-     //   $this->settings = $settings;
-       // $this->middleware('client.create', ['only' => ['create']]);
-       // $this->middleware('client.update', ['only' => ['edit']]);
-    }
+    public function __construct() {}
 
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
-    {//$clients = Client::select(['id', 'name', 'company_name', 'email', 'primary_number']);
+    {
        $clients = Client::all();
         return $this->sendResponse($clients->toArray(), 'Posts retrieved successfully.');
-       // return view('clients.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return mixed
-     */
-   /* public function create(Request $request)
-    {//print_r($request);die;
-        return $this->sendResponse(null, 'Posts retrieved successfully.');
-        /*return view('clients.create')
-            ->withUsers($this->users->getAllUsersWithDepartments())
-            ->withIndustries($this->clients->listAllIndustries());
-    }
-*/
     /**
      * @param StoreClientRequest $request
      * @return mixed
      */
     public function store(Request $request)
-    {//echo 'store';die;
+    {
         $input = $request->all();
         $validator = Validator::make($input, [
             'name' => 'string',

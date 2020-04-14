@@ -149,12 +149,7 @@ use App\Http\Controllers\API\APIBaseController as APIBaseController;
 
 class RulesController extends APIBaseController
 {
-	 public function __construct()
-    {
-        //$this->middleware('auth');
-		//$this->middleware('role_admin');
-		//$this->middleware('lang');
-    }
+	 public function __construct() {}
     /**
      * Display a listing of the resource.
      *
@@ -162,8 +157,7 @@ class RulesController extends APIBaseController
      */
     public function index()
     {
-       $roles = Role::get();
-	  // print_r($roles);die;
+        $roles = Role::get();
         return $this->sendResponse($roles->toArray(), 'Roles retrieved successfully.');
     }
 
@@ -230,10 +224,6 @@ class RulesController extends APIBaseController
     {
         $roles = $request->all();
 
-       /* $this->validate($input,[
-            'name' => 'string',
-        ]);*/
-
         $role = Role::create(['name' => $roles[0][0]['name'], 'guard_name' => 'web']);
         foreach ($roles[1] as $key => $rl){
             Permission::find($rl)->assignRole($roles[0][0]['name']);
@@ -269,7 +259,6 @@ class RulesController extends APIBaseController
     public function edit($id)
     {
         $role = Role::find($id);
-        //print_r($role);die;
         $permissions = Permission::get();
 		foreach($permissions as $key => $permission):
 		$perms[$key] = $permissions[$key]->getOriginal();
@@ -277,8 +266,8 @@ class RulesController extends APIBaseController
         $perms_ids = DB::select('select * from role_has_permissions where role_id = ?',[$id]);
         foreach($perms_ids as $key => $ids):
         $perms_id[$ids->permission_id] = $ids;
-        endforeach;        
-//print_r($perms_id);die;
+        endforeach;
+
         return view('rules.update',compact('role','perms','perms_id'));
     }
 

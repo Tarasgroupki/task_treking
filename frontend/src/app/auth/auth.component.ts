@@ -23,7 +23,7 @@ export class AuthComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (localStorage.getItem('LoggedIn')) {
+        if (this.authService.isAuthenticated()) {
             this.router.navigate(['profile']);
         }
     }
