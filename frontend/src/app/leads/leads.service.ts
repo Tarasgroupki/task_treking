@@ -10,7 +10,7 @@ export class LeadsService {
   constructor(private http: HttpClient, private router: Router) { }
 
   getUsers() {
-      return this.http.get('http://localhost:8040/api/users', {
+      return this.http.get('http://localhost:8040/api/usersForm', {
           headers: new HttpHeaders({'Accept': 'application/json'})
       }).map(result => result);
   }

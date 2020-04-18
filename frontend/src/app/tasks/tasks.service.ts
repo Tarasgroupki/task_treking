@@ -9,15 +9,13 @@ export class TasksService {
   constructor(private http: HttpClient, private router: Router) { }
 
   getUsers() {
-      return this.http.get('http://localhost:8040/api/users', {
-          headers: new HttpHeaders({'Accept': 'application/json',
-              'Authorization': 'Bearer ' + localStorage.getItem('token'), })
+      return this.http.get('http://localhost:8040/api/usersForm', {
+          headers: new HttpHeaders({'Accept': 'application/json'})
       }).map(result => result);
   }
   getSprints() {
-      return this.http.get('http://localhost:8040/api/sprints', {
-            headers: new HttpHeaders({'Accept': 'application/json',
-                'Authorization': 'Bearer ' + localStorage.getItem('token'), })
+      return this.http.get('http://localhost:8040/api/sprintsForm', {
+            headers: new HttpHeaders({'Accept': 'application/json'})
       }).map(result => result);
   }
   getInvoices() {
@@ -25,14 +23,12 @@ export class TasksService {
   }
   getTasks() {
       return this.http.get('http://localhost:8040/api/tasks?include=user', {
-          headers: new HttpHeaders({'Accept': 'application/json',
-              'Authorization': 'Bearer ' + localStorage.getItem('token'), })
+          headers: new HttpHeaders({'Accept': 'application/json'})
       }).map(result => result);
   }
   showTask(id: number) {
       return this.http.get('http://localhost:8040/api/tasks/' + id + '', {
-          headers: new HttpHeaders({'Accept': 'application/json',
-              'Authorization': 'Bearer ' + localStorage.getItem('token'), })
+          headers: new HttpHeaders({'Accept': 'application/json'})
       }).map(result => result).catch(() => {
         return this.router.navigate(['not-found']);
       });

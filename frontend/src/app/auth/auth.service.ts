@@ -21,10 +21,10 @@ export class AuthService {
     logoutAuth(id: number) {
        return this.http.get('http://localhost:8040/api/users/logout/' + id + '').map(result => result);
     }
-  public isAuthenticated(): boolean {
-    const token = localStorage.getItem('token');
+    isAuthenticated(): boolean {
+       const token = localStorage.getItem('token');
 
-    return !!token;
-  }
+       return !!token;
+    }
 
 }

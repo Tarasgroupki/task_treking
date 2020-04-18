@@ -21,7 +21,7 @@ Route::resource('index', 'API\ClientsController')->middleware(['auth:api','swfix
 Route::resource('tasks', 'API\TasksController');
 Route::resource('leads', 'API\LeadsController')->middleware(['auth:api', 'scope:create-tasks,edit-tasks,delete-tasks']);
 Route::resource('sprints', 'API\SprintsController')->middleware(['auth:api', 'scope:create-sprints,edit-sprints,delete-sprints']);
-//Route::resource('users', 'API\UsersController')->middleware(['auth:api', 'scope:create-users,edit-users,delete-users']);
+// Route::resource('users', 'API\UsersController')->middleware(['auth:api', 'scope:create-users,edit-users,delete-users']);
 Route::get('points', 'API\TasksController@story_points');
 Route::get('vote_count/{id}','API\TasksController@votes');
 Route::get('vote_counter/{id}','API\TasksController@voter');
@@ -36,8 +36,7 @@ Route::put('profile/{id}', 'API\UsersController@profileUpdate')->middleware('aut
 Route::put('users/{id}', 'API\UsersController@update')->middleware(['auth:api', 'scope:edit-users']);
 Route::delete('users/{id}', 'API\UsersController@destroy')->middleware(['auth:api', 'scope:delete-users']);
 Route::resource('rules', 'API\RulesController')->middleware('auth:api');
-//Route::post('roles', 'API\RulesController@checkToken');
-//Route::post('roles', );
+
 Route::get('users/logout/{id}', 'API\UsersController@actionLogout');
 Route::post('users/assign/{id}', 'API\UsersController@AssignRoles')->middleware(['auth:api', 'scope:create-roles']);
 Route::get('users/add_roles/{id}', 'API\UsersController@getUserRoles')->middleware(['auth:api', 'scope:create-roles']);
@@ -46,5 +45,7 @@ Route::get('permissions', 'API\RulesController@permissions')->middleware(['auth:
 Route::post('fileUpload', 'API\UsersController@FileUpload');
 Route::post('auth', 'API\UsersController@actionLogin');
 
+Route::get('usersForm', 'API\UsersController@index');
+Route::get('leadsForm', 'API\LeadsController@index');
+Route::get('sprintsForm', 'API\SprintsController@index');
 
-//Route::get('/store/{id}/{name}/{email}/{primary_number}/{secondary_number}/{address}/{zipcode}/{city}/{company_name}/{vat}/{industry}/{company_type}/{user_id}/{industry_id}', 'API\ClientsController@store');
