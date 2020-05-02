@@ -24,9 +24,12 @@ export class SettingsUpdateComponent implements OnInit {
     updateRole() {
         this.roles.push(this.role.name);
         this.rolePerm.push(this.selectedCheckbox, this.unselectedCheckbox, this.roles);
-        console.log(this.rolePerm);
         this.settingsService.updateRole(this.id, this.rolePerm).subscribe(resRole => {
-            this.role = resRole;
+          this.role.length = 0;
+          this.rolePerm.length = 0;
+          this.selectedCheckbox.length = 0;
+          this.unselectedCheckbox.length = 0;
+          this.getCheckedPermissions();
         });
     }
     ngOnInit() {
@@ -34,15 +37,16 @@ export class SettingsUpdateComponent implements OnInit {
             this.role = new Roles(resRole['data']['name']);
             this.id = params['id'];
         }));
-        this.route.params.subscribe( params => this.settingsService.getOnePermission(params['id']).subscribe(resPermission => {
-            this.id = params['id'];
-            this.permissions = resPermission['data']['permissions'];
-            console.log(this.permissions);
-            if (resPermission['data']['permissions_id']) {
-                this.checkedPermissions = resPermission['data']['permissions_id'];
-                console.log(this.checkedPermissions);
-            }
-        }));
+        this.getCheckedPermissions();
+    }
+    getCheckedPermissions() {
+      this.route.params.subscribe( params => this.settingsService.getOnePermission(params['id']).subscribe(resPermission => {
+        this.id = params['id'];
+        this.permissions = resPermission['data']['permissions'];
+        if (resPermission['data']['permissions_id']) {
+          this.checkedPermissions = resPermission['data']['permissions_id'];
+        }
+      }));
     }
     onCkeckboxSelected(value) {
         if (this.selectedCheckbox.indexOf( value ) !== -1) {

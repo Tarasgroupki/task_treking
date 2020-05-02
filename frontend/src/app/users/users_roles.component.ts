@@ -15,18 +15,19 @@ export class UsersRolesComponent implements OnInit {
     selectedCheckbox = [];
     unselectedCheckbox = [];
     checkboxes = [];
-  //  displayedColumns = ['id', 'name', 'email', 'password', 'address', 'work_number', 'personal_number', 'image_path'];
 
     constructor(private usersService: UsersService, private route: ActivatedRoute) {}
 
     ngOnInit() {
+        this.getCheckedRoles();
+    }
+    getCheckedRoles() {
         this.route.params.subscribe( params => this.usersService.getRoles(params['id']).subscribe(resRoles => {
-            this.id = params['id'];
-            this.roles = resRoles['data']['roles'];
-            if (resRoles['data']['roles_id']) {
-                this.checkedRoles = resRoles['data']['roles_id'];
-            }
-            console.log(this.checkedRoles);
+          this.id = params['id'];
+          this.roles = resRoles['data']['roles'];
+          if (resRoles['data']['roles_id']) {
+            this.checkedRoles = resRoles['data']['roles_id'];
+          }
         }));
     }
     onCkeckboxSelected(value) {
@@ -35,7 +36,6 @@ export class UsersRolesComponent implements OnInit {
         } else {
             this.selectedCheckbox.push(value);
         }
-        console.log(this.selectedCheckbox);
     }
     onCkeckboxUnSelected(value) {
         if (this.unselectedCheckbox.indexOf( value ) !== -1) {
@@ -43,12 +43,15 @@ export class UsersRolesComponent implements OnInit {
         } else {
             this.unselectedCheckbox.push(value);
         }
-        console.log(this.unselectedCheckbox);
     }
     assignRole() {
         this.checkboxes.push(this.selectedCheckbox, this.unselectedCheckbox);
-        this.usersService.AssignRoles(this.id, this.checkboxes).subscribe(resAssignRoles => {
-            console.log(resAssignRoles);
+        this.usersService.AssignRoles(this.id, this.checkboxes).subscribe(() => {
+          this.checkboxes.length = 0;
+          this.selectedCheckbox.length = 0;
+          this.unselectedCheckbox.length = 0;
+          this.checkedRoles = null;
+          this.getCheckedRoles();
         });
     }
 
