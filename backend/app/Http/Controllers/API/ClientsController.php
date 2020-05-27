@@ -176,23 +176,26 @@ use App\Repositories\Setting\SettingRepositoryContract;
 class ClientsController extends APIBaseController
 {
 
-    public function __construct() {}
+    public function __construct(
+    )
+    {
+
+    }
 
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
-    {
+    {//$clients = Client::select(['id', 'name', 'company_name', 'email', 'primary_number']);
        $clients = Client::all();
         return $this->sendResponse($clients->toArray(), 'Posts retrieved successfully.');
     }
-
     /**
      * @param StoreClientRequest $request
      * @return mixed
      */
     public function store(Request $request)
-    {
+    {//echo 'store';die;
         $input = $request->all();
         $validator = Validator::make($input, [
             'name' => 'string',

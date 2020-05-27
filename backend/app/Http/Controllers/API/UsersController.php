@@ -219,7 +219,11 @@ class UsersController extends APIBaseController
 {
     public $successStatus = 200;
 
-    public function __construct() {}
+    public function __construct()
+    {
+       // $this->middleware('auth');
+       // $this->middleware('lang');
+    }
 
     public function actionLogin(Request $request) {
         $input = $request->all();
@@ -239,7 +243,7 @@ class UsersController extends APIBaseController
 
         }
         else{
-            
+
             return $this->sendError(NULL, 'Authentication error!');
 
         }
@@ -267,11 +271,10 @@ class UsersController extends APIBaseController
         if(isset($roles_id)):
         $user_roles['roles_id'] = $roles_id;
         endif;
-
         return $this->sendResponse($user_roles, 'Roles got successfully!');
     }
 
-    public function AssignRoles($id,Request $request) {
+    public function assignRoles($id,Request $request) {
         $input = $request->all();
 
         $user = User::find($id);
@@ -286,11 +289,14 @@ class UsersController extends APIBaseController
             $user->removeRole($role);
         }
         endif;
-
+      //  DB::table('oauth_access_tokens')
+        //    ->where('user_id', $id)
+       //     ->update(['revoked' => true]);
+      //  $success['token'] = $user->createToken('TaskTrack',  $permissions)->accessToken;
         return $this->sendResponse($roles, 'Roles added to user successfully.');
     }
 
-    public function FileUpload(Request $request) {
+    public function fileUpload(Request $request) {
         $input = $request->all();
 
         $file = $input['image_path'];
@@ -321,7 +327,10 @@ class UsersController extends APIBaseController
        $validator = Validator::make($input, [
             'name' => 'string|max:255',
             'email' => 'string|email|max:255|unique:users',
-            'password' => 'string|min:6|confirmed'
+            'password' => 'string|min:6|confirmed',
+          //  'address' => 'string',
+        //    'work_number' => 'string',
+       //     'personal_number' => 'string'
         ]);
 
         if($validator->fails()){
@@ -332,8 +341,14 @@ class UsersController extends APIBaseController
        $user = User::create([
             'name' => $input[0]['name'],
             'email' => $input[0]['email'],
-            'password' => bcrypt($input[0]['password'])
+            'password' => bcrypt($input[0]['password']),
+          //  'address' => $input[0]['address'],
+           // 'work_number' => $input[0]['work_number'],
+          //  'personal_number' => $input[0]['personal_number'],
+          //  'image_path' => 'images/'.$input[0]['image_path']
         ]);
+       // $user = User::create($input[0]);
+
 
         return $this->sendResponse($user->toArray(), 'User created successfully.');
     }

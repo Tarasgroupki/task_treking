@@ -175,14 +175,18 @@ use App\Http\Controllers\API\APIBaseController as APIBaseController;
 class SprintsController extends APIBaseController
 {
 
-    public function story_points($id)
+    public function storyPoints($id)
     {
         $sprints = Sprint::find($id);
         $encoded_sprints = json_decode($sprints, true);
+       // foreach ($encoded_sprints as $key => $value) {
+          //  print_r($value);
            $tasks = Task::where('sprint_assigned_id', $encoded_sprints['id'])->get();
+     //  }
         $marks['mark'] = array();
         $marks['mark'][0] = 250;
         $i = 0;
+       // $marks['date'][0] = strtotime($tasks[0]['created_at']);
         foreach ($tasks as $key => $value) {
             if($value['status'] == 2) {
                 $date_reason = strtotime($tasks[$key]['deadline']) - strtotime($tasks[0]['created_at']);
@@ -198,6 +202,7 @@ class SprintsController extends APIBaseController
             $votes[$key] = Vote::where('task_assigned_id', $value['id'])->get();
             foreach ($votes[$key] as $key1 => $value1) {
                 $cent_mark[$key] += $value1['mark'];
+               // echo $votes[$key][$key1]['id'];
             }
             if(isset($cent_mark[$key]) && $cent_mark[$key] != 0):
             $i += 1;
@@ -210,6 +215,7 @@ class SprintsController extends APIBaseController
             $days[$i] = $i + 1;
             $days[$i] = 'Day'.$days[$i];
         }
+        // print_r($dates);
         foreach($dates as $key => $value) {
             if($dates[$key] > 1):
             for($i = 0; $i < $dates[$key]; $i++){
@@ -222,7 +228,9 @@ class SprintsController extends APIBaseController
         $arr = explode(',', $str);
         foreach ($arr as $key => $value){
             $arr[$key] = intval($value);
+          // echo gettype($arr[$key]);
         }
+        // print_r($arr);
         if($encoded_sprints['status'] == 2):
             Task::where('sprint_assigned_id', $id)->update(array('status' => 2));
             $arr[count($days)] = 0;
@@ -230,6 +238,7 @@ class SprintsController extends APIBaseController
             $days[count($days)] = 'Day'.$counter;
         endif;
         $higher_counter = 0;
+        $quadro = 0;
         $ideal_line[0] = 250;
         $reasons = 250 / count($days);
         for($i = 0; $i<count($days); $i++):
@@ -240,6 +249,7 @@ class SprintsController extends APIBaseController
                 break;
             }
         endfor;
+
         $marks['mark'] = $arr;
         $marks['ideal_line'] = $ideal_line;
         $marks['date'] = $days;
@@ -262,6 +272,16 @@ class SprintsController extends APIBaseController
         }
 
         return $this->sendResponse($sprints, 'Sprints retrieved successfully.');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+
     }
 
     /**
@@ -313,6 +333,17 @@ class SprintsController extends APIBaseController
 
 
         return $this->sendResponse($sprint->toArray(), 'Sprint retrieved successfully.');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Sprint  $sprint
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Sprint $sprint)
+    {
+        //
     }
 
     /**

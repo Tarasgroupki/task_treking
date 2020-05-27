@@ -196,52 +196,11 @@ class TasksController extends APIBaseController
            $tasks[$i]["user_created_id"] = $user_created["name"];
            $tasks[$i]["client_id"] = $client["name"];
         }
-
+        //print_r($tasks);
         return $this->sendResponse($tasks, 'Tasks retrieved successfully.');
     }
 
-    public function story_points()
-    {
-        $tasks = Task::all();
-        $encoded_tasks = json_decode($tasks, true);
-        foreach ($encoded_tasks as $key => $value) {
-            if($value['status'] == 2) {
-                $time_first = strtotime($value['deadline']);
-                $time_second = strtotime($value['created_at']);
-                $secs = $time_first - $time_second;
-                $res[$key] = $secs / 86400;
-                $marks['date'][$key] = $time_first;
-                $min = null;
-                foreach ($res as $key1 => $value1) {
-                   if($value1 < 3) {
-                       $marks['list'][$key1] = 1;
-                   }
-                   elseif($value1 > 3 && $value1 < 8) {
-                       $marks['list'][$key1] = 2;
-                   }
-                   elseif($value1 > 8 && $value1 < 14) {
-                       $marks['list'][$key1] = 3;
-                   }
-                   elseif($value1 > 14 && $value1 < 30) {
-                       $marks['list'][$key1] = 5;
-                   }
-                   elseif($value1 > 30 && $value1 < 60) {
-                       $marks['list'][$key1] = 8;
-                   }
-                   elseif($value1 > 60 && $value1 < 90) {
-                       $marks['list'][$key1] = 13;
-                   }
-                   else {
-                       $marks['list'][$key1] = 21;
-                   }
-                }
-            }
-        }
-
-        return $this->sendResponse(json_encode($marks), 'Tasks retrieved successfully.');
-    }
-
-    public function add_votes(Request $request)
+    public function addVotes(Request $request)
     {
         $input = $request->all();
 
@@ -263,7 +222,7 @@ class TasksController extends APIBaseController
         return $this->sendResponse($task->toArray(), 'Vote created successfully.');
     }
 
-    public function vote_update(Request $request, $id)
+    public function voteUpdate(Request $request, $id)
     {
         $input = $request->all();
 
@@ -360,6 +319,8 @@ class TasksController extends APIBaseController
             $users[0] = 0;
         }
 
+       // print_r($votes);
+
         return $this->sendResponse(json_encode($users), 'Users retrieved successfully.');
     }
 
@@ -369,11 +330,15 @@ class TasksController extends APIBaseController
 
          $vote = Vote::where('task_assigned_id', $str_ids[1])->where('user_added_id', $str_ids[0])->get();
 
+        // print_r($id);
+
           if (is_null($vote)) {
             return $this->sendError('Task not found.');
          }
 
-         return $this->sendResponse(json_encode($vote[0]), 'Users retrieved successfully.');
+         //print_r($vote);
+
+        return $this->sendResponse(json_encode($vote[0]), 'Users retrieved successfully.');
     }
     /**
      * Update the specified resource in storage.
