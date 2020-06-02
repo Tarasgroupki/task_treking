@@ -179,14 +179,10 @@ class SprintsController extends APIBaseController
     {
         $sprints = Sprint::find($id);
         $encoded_sprints = json_decode($sprints, true);
-       // foreach ($encoded_sprints as $key => $value) {
-          //  print_r($value);
-           $tasks = Task::where('sprint_assigned_id', $encoded_sprints['id'])->get();
-     //  }
+        $tasks = Task::where('sprint_assigned_id', $encoded_sprints['id'])->get();
         $marks['mark'] = array();
         $marks['mark'][0] = 250;
         $i = 0;
-       // $marks['date'][0] = strtotime($tasks[0]['created_at']);
         foreach ($tasks as $key => $value) {
             if($value['status'] == 2) {
                 $date_reason = strtotime($tasks[$key]['deadline']) - strtotime($tasks[0]['created_at']);
@@ -202,13 +198,12 @@ class SprintsController extends APIBaseController
             $votes[$key] = Vote::where('task_assigned_id', $value['id'])->get();
             foreach ($votes[$key] as $key1 => $value1) {
                 $cent_mark[$key] += $value1['mark'];
-               // echo $votes[$key][$key1]['id'];
             }
-            if(isset($cent_mark[$key]) && $cent_mark[$key] != 0):
-            $i += 1;
-            $cent_mark[$key] = $cent_mark[$key] / count($votes[$key]);
-            $marks['mark'][$i] = $marks['mark'][$i - 1] - $cent_mark[$key];
-            endif;
+            if(isset($cent_mark[$key]) && $cent_mark[$key] != 0) {
+                $i += 1;
+                $cent_mark[$key] = $cent_mark[$key] / count($votes[$key]);
+                $marks['mark'][$i] = $marks['mark'][$i - 1] - $cent_mark[$key];
+            }
         }
         $count_days = round($date_reason / 86400);
         for($i = 0; $i<$count_days; $i++) {
@@ -217,20 +212,18 @@ class SprintsController extends APIBaseController
         }
         // print_r($dates);
         foreach($dates as $key => $value) {
-            if($dates[$key] > 1):
-            for($i = 0; $i < $dates[$key]; $i++){
-                $mark[$key][$i] = round($marks['mark'][$key]);
+            if($dates[$key] > 1) {
+                for ($i = 0; $i < $dates[$key]; $i++) {
+                    $mark[$key][$i] = round($marks['mark'][$key]);
+                }
+                $mr[$key] = implode(',', $mark[$key]);
             }
-            $mr[$key] = implode(',', $mark[$key]);
-            endif;
         }
         $str = implode(',', $mr);
         $arr = explode(',', $str);
         foreach ($arr as $key => $value){
             $arr[$key] = intval($value);
-          // echo gettype($arr[$key]);
         }
-        // print_r($arr);
         if($encoded_sprints['status'] == 2):
             Task::where('sprint_assigned_id', $id)->update(array('status' => 2));
             $arr[count($days)] = 0;
@@ -264,7 +257,7 @@ class SprintsController extends APIBaseController
     {
         $sprints = Sprint::all()->toArray();
 
-        foreach ($sprints as $key => $value){
+        foreach ($sprints as $key => $value) {
             $user_created = User::find($value["user_created_id"]);
             $lead = Lead::find($value["lead_assigned_id"]);
             $sprints[$key]["user_created_id"] = $user_created["name"];
@@ -306,7 +299,7 @@ class SprintsController extends APIBaseController
         ]);
 
 
-        if($validator->fails()){
+        if($validator->fails()) {
             return $this->sendError('Validation Error.', $validator->errors());
         }
 
@@ -370,7 +363,7 @@ class SprintsController extends APIBaseController
 
 
 
-        if($validator->fails()){
+        if($validator->fails()) {
             return $this->sendError('Validation Error.', $validator->errors());
         }
 

@@ -187,10 +187,10 @@ class TasksController extends APIBaseController
         $tasks = Task::all()->toArray();
 
         for($i = 0; $i < count($tasks); $i++) {
-            $sprint = Sprint::find($tasks[$i]["sprint_assigned_id"]);
-            $user_assigned = User::find($tasks[$i]["user_assigned_id"]);
-            $user_created = User::find($tasks[$i]["user_created_id"]);
-            $client = Client::find($tasks[$i]["client_id"]);
+           $sprint = Sprint::find($tasks[$i]["sprint_assigned_id"]);
+           $user_assigned = User::find($tasks[$i]["user_assigned_id"]);
+           $user_created = User::find($tasks[$i]["user_created_id"]);
+           $client = Client::find($tasks[$i]["client_id"]);
            $tasks[$i]["sprint_assigned_id"] = $sprint["title"];
            $tasks[$i]["user_assigned_id"] = $user_assigned["name"];
            $tasks[$i]["user_created_id"] = $user_created["name"];
@@ -233,7 +233,7 @@ class TasksController extends APIBaseController
         ]);
 
 
-        if($validator->fails()){
+        if($validator->fails()) {
             return $this->sendError('Validation Error.', $validator->errors());
         }
 
@@ -319,24 +319,18 @@ class TasksController extends APIBaseController
             $users[0] = 0;
         }
 
-       // print_r($votes);
-
         return $this->sendResponse(json_encode($users), 'Users retrieved successfully.');
     }
 
     public function voter($id)
     {
-         $str_ids = explode('_', $id);
+        $str_ids = explode('_', $id);
 
-         $vote = Vote::where('task_assigned_id', $str_ids[1])->where('user_added_id', $str_ids[0])->get();
+        $vote = Vote::where('task_assigned_id', $str_ids[1])->where('user_added_id', $str_ids[0])->get();
 
-        // print_r($id);
-
-          if (is_null($vote)) {
+        if (is_null($vote)) {
             return $this->sendError('Task not found.');
-         }
-
-         //print_r($vote);
+        }
 
         return $this->sendResponse(json_encode($vote[0]), 'Users retrieved successfully.');
     }
@@ -366,7 +360,7 @@ class TasksController extends APIBaseController
 
 
 
-        if($validator->fails()){
+        if($validator->fails()) {
             return $this->sendError('Validation Error.', $validator->errors());
         }
 

@@ -219,22 +219,17 @@ class UsersController extends APIBaseController
 {
     public $successStatus = 200;
 
-    public function __construct()
-    {
-       // $this->middleware('auth');
-       // $this->middleware('lang');
-    }
+    public function __construct() { }
 
     public function actionLogin(Request $request) {
         $input = $request->all();
-        //print_r($input);die;
+
         if(Auth::attempt(['email' => $input[0]['email'], 'password' => $input[0]['password']])) {
             $user = Auth::user();
             $success['permissions'] = $user->getAllPermissions();
             foreach ($success['permissions'] as $key => $permission) {
                 $permissions[$key] = str_slug($permission['name']);
             }
-            //$scopes = implode(",",$permissions);
             $success['token'] = $user->createToken('TaskTrack',  $permissions)->accessToken;
             $success['user'] = $user;
             $success['permissions'] = $permissions;
@@ -242,7 +237,7 @@ class UsersController extends APIBaseController
             return $this->sendResponse($success, 'User is authenticate successfully!');
 
         }
-        else{
+        else {
 
             return $this->sendError(NULL, 'Authentication error!');
 
@@ -260,17 +255,17 @@ class UsersController extends APIBaseController
 
     public function getUserRoles($id) {
         $roles_all = Role::get();
-        foreach($roles_all as $key => $role):
+        foreach($roles_all as $key => $role) {
             $roles[$key] = $roles_all[$key]->getOriginal();
-        endforeach;
+        }
         $roles_ids = DB::select('select * from model_has_roles where model_id = ?',[$id]);
-        foreach($roles_ids as $key => $ids):
+        foreach($roles_ids as $key => $ids) {
             $roles_id[$ids->role_id] = $ids;
-        endforeach;
+        }
         $user_roles['roles'] = $roles;
-        if(isset($roles_id)):
-        $user_roles['roles_id'] = $roles_id;
-        endif;
+        if(isset($roles_id)) {
+            $user_roles['roles_id'] = $roles_id;
+        }
         return $this->sendResponse($user_roles, 'Roles got successfully!');
     }
 
@@ -279,20 +274,17 @@ class UsersController extends APIBaseController
 
         $user = User::find($id);
         $roles = $input;
-        if(isset($roles[0])):
-        foreach ($roles[0] as $key => $role) {
-            $user->assignRole($role);
+        if(isset($roles[0])) {
+            foreach ($roles[0] as $key => $role) {
+                $user->assignRole($role);
+            }
         }
-        endif;
-        if(isset($roles[1])):
-        foreach ($roles[1] as $key => $role) {
-            $user->removeRole($role);
+        if(isset($roles[1])) {
+            foreach ($roles[1] as $key => $role) {
+                $user->removeRole($role);
+            }
         }
-        endif;
-      //  DB::table('oauth_access_tokens')
-        //    ->where('user_id', $id)
-       //     ->update(['revoked' => true]);
-      //  $success['token'] = $user->createToken('TaskTrack',  $permissions)->accessToken;
+
         return $this->sendResponse($roles, 'Roles added to user successfully.');
     }
 
@@ -327,10 +319,7 @@ class UsersController extends APIBaseController
        $validator = Validator::make($input, [
             'name' => 'string|max:255',
             'email' => 'string|email|max:255|unique:users',
-            'password' => 'string|min:6|confirmed',
-          //  'address' => 'string',
-        //    'work_number' => 'string',
-       //     'personal_number' => 'string'
+            'password' => 'string|min:6|confirmed'
         ]);
 
         if($validator->fails()){
@@ -341,13 +330,8 @@ class UsersController extends APIBaseController
        $user = User::create([
             'name' => $input[0]['name'],
             'email' => $input[0]['email'],
-            'password' => bcrypt($input[0]['password']),
-          //  'address' => $input[0]['address'],
-           // 'work_number' => $input[0]['work_number'],
-          //  'personal_number' => $input[0]['personal_number'],
-          //  'image_path' => 'images/'.$input[0]['image_path']
+            'password' => bcrypt($input[0]['password'])
         ]);
-       // $user = User::create($input[0]);
 
 
         return $this->sendResponse($user->toArray(), 'User created successfully.');
@@ -422,8 +406,9 @@ class UsersController extends APIBaseController
 
         $user->name = $input[0]['name'];
         $user->email = $input[0]['email'];
-        if(isset($input[0]['password'])): $user->password = bcrypt($input[0]['password']);
-        endif;
+        if(isset($input[0]['password'])) {
+            $user->password = bcrypt($input[0]['password']);
+        }
         $user->address = $input[0]['address'];
         $user->work_number = $input[0]['work_number'];
         $user->personal_number = $input[0]['personal_number'];
@@ -462,8 +447,9 @@ class UsersController extends APIBaseController
 
         $user->name = $input[0]['name'];
         $user->email = $input[0]['email'];
-        if(isset($input[0]['password'])): $user->password = bcrypt($input[0]['password']);
-        endif;
+        if(isset($input[0]['password'])) {
+            $user->password = bcrypt($input[0]['password']);
+        }
         $user->address = $input[0]['address'];
         $user->work_number = $input[0]['work_number'];
         $user->personal_number = $input[0]['personal_number'];

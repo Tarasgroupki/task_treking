@@ -149,12 +149,7 @@ use App\Http\Controllers\API\APIBaseController as APIBaseController;
 
 class RulesController extends APIBaseController
 {
-	 public function __construct()
-    {
-        //$this->middleware('auth');
-		//$this->middleware('role_admin');
-		//$this->middleware('lang');
-    }
+	 public function __construct(){}
     /**
      * Display a listing of the resource.
      *
@@ -163,7 +158,7 @@ class RulesController extends APIBaseController
     public function index()
     {
        $roles = Role::get();
-	  // print_r($roles);die;
+
         return $this->sendResponse($roles->toArray(), 'Roles retrieved successfully.');
     }
 
@@ -176,31 +171,31 @@ class RulesController extends APIBaseController
 
     public function getRolesPermissions($id) {
         $permissions_all = Permission::get();
-        foreach($permissions_all as $key => $permission):
+        foreach($permissions_all as $key => $permission) {
             $permissions[$key] = $permissions_all[$key]->getOriginal();
-        endforeach;
+        }
         $permissions_ids = DB::select('select * from role_has_permissions where role_id = ?',[$id]);
-        foreach($permissions_ids as $key => $ids):
+        foreach($permissions_ids as $key => $ids) {
             $permissions_id[$ids->permission_id] = $ids;
-        endforeach;
+        }
         $user_permissions['permissions'] = $permissions;
-        if(isset($permissions_id)):
+        if(isset($permissions_id)) {
             $user_permissions['permissions_id'] = $permissions_id;
-        endif;
+        }
         return $this->sendResponse($user_permissions, 'Permission added successfully.');
     }
 
 	public function indexCreate($locale,$id = null)
 	{
 		$permissions = Permission::get();
-		foreach($permissions as $key => $permission):
-		$perms[$key] = $permissions[$key]->getOriginal();
-		endforeach;
+		foreach($permissions as $key => $permission) {
+            $perms[$key] = $permissions[$key]->getOriginal();
+        }
 		$rules = null;
-		if($id != null):
-		$rules = DB::select('select * from role_has_permissions where role_id = ?',[$id]);
-		endif;
-		//print_r($perms);die;
+		if($id != null) {
+            $rules = DB::select('select * from role_has_permissions where role_id = ?', [$id]);
+        }
+
 		return view('rules.create',compact('perms','rules'));
 	}
     /**
@@ -214,9 +209,9 @@ class RulesController extends APIBaseController
 		     'name' => 'string|required',
 		 ]);
 		$role = Role::create(['name' => request('role_name')]);
-		foreach(request('permissions') as $key => $perms):
-		$role->givePermissionTo($perms);
-		endforeach;
+		foreach(request('permissions') as $key => $perms) {
+            $role->givePermissionTo($perms);
+        }
 		return back();
     }
 
@@ -230,12 +225,8 @@ class RulesController extends APIBaseController
     {
         $roles = $request->all();
 
-       /* $this->validate($input,[
-            'name' => 'string',
-        ]);*/
-
         $role = Role::create(['name' => $roles[0][0]['name'], 'guard_name' => 'web']);
-        foreach ($roles[1] as $key => $rl){
+        foreach ($roles[1] as $key => $rl) {
             Permission::find($rl)->assignRole($roles[0][0]['name']);
         }
         return $this->sendResponse($role->toArray(), 'Role added successfully.');
@@ -269,16 +260,16 @@ class RulesController extends APIBaseController
     public function edit($id)
     {
         $role = Role::find($id);
-        //print_r($role);die;
+
         $permissions = Permission::get();
-		foreach($permissions as $key => $permission):
-		$perms[$key] = $permissions[$key]->getOriginal();
-		endforeach;
+		foreach($permissions as $key => $permission) {
+            $perms[$key] = $permissions[$key]->getOriginal();
+        }
         $perms_ids = DB::select('select * from role_has_permissions where role_id = ?',[$id]);
-        foreach($perms_ids as $key => $ids):
-        $perms_id[$ids->permission_id] = $ids;
-        endforeach;
-//print_r($perms_id);die;
+        foreach($perms_ids as $key => $ids) {
+            $perms_id[$ids->permission_id] = $ids;
+        }
+
         return view('rules.update',compact('role','perms','perms_id'));
     }
 
@@ -299,16 +290,17 @@ class RulesController extends APIBaseController
         }
 
         $role->name = $permissions[2][0];
-        if(isset($permissions[0])):
+        if(isset($permissions[0])) {
             foreach ($permissions[0] as $key => $permission) {
                 Permission::find($permission)->assignRole($permissions[2][0]);
             }
-        endif;
-        if(isset($permissions[1])):
+        }
+        if(isset($permissions[1])) {
             foreach ($permissions[1] as $key => $permission) {
                 Permission::find($permission)->removeRole($permissions[2][0]);
             }
-        endif;
+        }
+
         return $this->sendResponse($permissions, 'Role updated successfully.');
     }
 

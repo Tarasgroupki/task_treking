@@ -195,7 +195,7 @@ class ClientsController extends APIBaseController
      * @return mixed
      */
     public function store(Request $request)
-    {//echo 'store';die;
+    {
         $input = $request->all();
         $validator = Validator::make($input, [
             'name' => 'string',

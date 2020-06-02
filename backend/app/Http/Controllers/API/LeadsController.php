@@ -275,13 +275,13 @@ class LeadsController extends APIBaseController
         $lead->contact_date = $input['contact_date'];
         $lead->save();
 
-        if($lead->status == 2):
+        if($lead->status == 2) {
             Sprint::where('lead_assigned_id', $id)->update(array('status' => 2));
             $sprints = Sprint::where('lead_assigned_id', $id)->get();
-            foreach($sprints as $key => $sprint):
+            foreach ($sprints as $key => $sprint) {
                 Task::where('sprint_assigned_id', $sprint['id'])->update(array('status' => 2));
-            endforeach;
-        endif;
+            }
+        }
 
         return $this->sendResponse($lead->toArray(), 'Lead updated successfully.');
     }
