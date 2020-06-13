@@ -26,11 +26,6 @@ class Task extends Model
         return $this->belongsTo(User::class, 'user_assigned_id');
     }
 
-    public function invoice()
-    {
-        return $this->belongsTo(Invoice::class);
-    }
-
     public function client()
     {
         return $this->belongsTo(Client::class, 'client_id');
@@ -39,11 +34,6 @@ class Task extends Model
     public function creator()
     {
         return $this->belongsTo(User::class, 'user_created_id');
-    }
-
-    public function comments()
-    {
-        return $this->morphMany(Comment::class, 'source');
     }
     
     public function getDaysUntilDeadlineAttribute()
@@ -61,31 +51,5 @@ class Task extends Model
     public function getCreatorUserAttribute()
     {
         return User::findOrFail($this->user_assigned_id);
-    }
-
-    public function activity()
-    {
-        return $this->morphMany(Activity::class, 'source');
-    }
-
-    public function canUpdateInvoice()
-    {
-        //If there is no invoice, it should be possible, because it also creates
-        if (!$this->invoice) {
-            return true;
-        }
-        return $this->invoice->canUpdateInvoice();
-    }
-
-    /**
-     * Add a reply to the thread.
-     *
-     * @param  array $reply
-     * @return Model
-     */
-    public function addComment($reply)
-    {
-        $reply = $this->comments()->create($reply);
-        return $reply;
     }
 }

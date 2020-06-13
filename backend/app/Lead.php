@@ -34,31 +34,9 @@ class Lead extends Model
     {
         return $this->belongsTo(Client::class, 'client_id');
     }
-    
-    public function comments()
-    {
-        return $this->morphMany(Comment::class, 'source');
-    }
-
-    public function activity()
-    {
-        return $this->morphMany(Activity::class, 'source');
-    }
 
     public function getDaysUntilContactAttribute()
     {
         return Carbon\Carbon::now()->startOfDay()->diffInDays($this->contact_date, false);
-    }
-
-    /**
-     * Add a reply to the thread.
-     *
-     * @param  array $reply
-     * @return Model
-     */
-    public function addComment($reply)
-    {
-        $reply = $this->comments()->create($reply);
-        return $reply;
     }
 }

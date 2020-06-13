@@ -39,16 +39,6 @@ class Client extends Model
             ->orderBy('created_at', 'desc');
     }
 
-    public function documents()
-    {
-        return $this->hasMany(Document::class, 'client_id', 'id');
-    }
-
-    public function invoices()
-    {
-        return $this->hasMany(Invoice::class);
-    }
-
     public function getAssignedUserAttribute()
     {
         return User::findOrFail($this->user_id);
